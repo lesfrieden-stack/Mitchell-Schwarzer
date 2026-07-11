@@ -2,9 +2,1551 @@
 <html lang="en">
 <head>
   <script>
-    localStorage.setItem("theme", "light");
-    document.documentElement.setAttribute("data-theme", "light");
-  </script>
+const localCvData = {
+  "personal": {
+    "name": "Mitchell Schwarzer",
+    "title": "Architectural & Urban Historian",
+    "subtitle": "Professor Emeritus of Art, Architecture, and Urban History at the California College of the Arts (CCA)",
+    "address": "572 Rosal Avenue, Oakland, CA 94610-1620",
+    "phone": "(510) 220-2274",
+    "emails": [
+      "Mschwarzer@cca.edu",
+      "Mitchell.Schwarzer@gmail.com"
+    ],
+    "bio": "Mitchell Schwarzer is a prominent American historian, author, and Professor Emeritus at the California College of the Arts (CCA). His research and teaching interests focus on architecture, urbanism, landscape, infrastructure, and art history. He is widely recognized for his work on urban history and preservation, particularly regarding the San Francisco Bay Area and Oakland. His books include 'Hella Town: Oakland's History of Development and Disruption' (2021), 'Zoomscape: Architecture in Motion and Media' (2004), and 'German Architectural Theory and the Search for Modern Identity' (1995).",
+    "external_links": [
+      {
+        "name": "Wikipedia Biography",
+        "url": "https://en.wikipedia.org/wiki/Mitchell_Schwarzer"
+      },
+      {
+        "name": "CCA Faculty Profile",
+        "url": "https://www.cca.edu/people/mitchell-schwarzer/"
+      },
+      {
+        "name": "UC Press Author Hub",
+        "url": "https://www.ucpress.edu/author/mitchell-schwarzer"
+      }
+    ]
+  },
+  "education": [
+    {
+      "institution": "Massachusetts Institute of Technology",
+      "location": "Cambridge, MA",
+      "degree": "Doctor of Philosophy",
+      "field": "Art and Architectural History",
+      "date": "September 1991",
+      "details": "Dissertation: 'Adolf Loos and Theories of the Practical Arts.'"
+    },
+    {
+      "institution": "Harvard University",
+      "location": "Cambridge, MA",
+      "degree": "Master of City and Regional Planning",
+      "field": "City and Regional Planning",
+      "date": "June 1981"
+    },
+    {
+      "institution": "Washington University",
+      "location": "St. Louis, MO",
+      "degree": "Bachelor of Arts",
+      "field": "History",
+      "date": "December 1978"
+    }
+  ],
+  "positions": [
+    {
+      "institution": "California College of the Arts",
+      "location": "San Francisco, CA",
+      "department": "Departments of History of Art and Visual Culture, and Architecture",
+      "roles": [
+        {
+          "title": "Professor Emeritus",
+          "period": "Fall 2022 - present"
+        },
+        {
+          "title": "Professor",
+          "period": "Fall 2004 - Spring 2022",
+          "administrative": [
+            "President of the Faculty Senate (2011-2014)",
+            "Chair: Bachelor of Arts Program in Visual Studies (2003-2008)"
+          ]
+        },
+        {
+          "title": "Associate Professor (Tenured)",
+          "period": "Fall 1998 - Spring 2004",
+          "administrative": [
+            "Co-Chair: Master of Arts Program in Visual Criticism (1998 - 2001)",
+            "Executive Editor: Design Book Review (1999-2001)"
+          ]
+        },
+        {
+          "title": "Associate Professor (Tenure-Track)",
+          "period": "Spring 1996 - Spring 1998"
+        }
+      ]
+    },
+    {
+      "institution": "University of Illinois at Chicago",
+      "location": "Chicago, IL",
+      "department": "Department of Art History",
+      "roles": [
+        {
+          "title": "Assistant Professor (Tenure-track)",
+          "period": "Fall 1991 - Fall 1995"
+        }
+      ]
+    },
+    {
+      "institution": "Massachusetts Institute of Technology",
+      "location": "Cambridge, MA",
+      "department": "Department of Architecture",
+      "roles": [
+        {
+          "title": "Lecturer",
+          "period": "Spring 1991"
+        }
+      ]
+    },
+    {
+      "institution": "Rhode Island School of Design",
+      "location": "Providence, RI",
+      "department": "School of Architecture",
+      "roles": [
+        {
+          "title": "Adjunct Professor",
+          "period": "Fall 1990"
+        }
+      ]
+    }
+  ],
+  "professional_experience": [
+    {
+      "company": "San Francisco Department of City Planning",
+      "location": "San Francisco, CA",
+      "title": "City Planner",
+      "period": "1983 - 1986",
+      "details": "Historic Preservation Element of the Master Plan (1989); South End Warehouse Historic District (1990). Preservation statutes for San Francisco Planning Code (1986) and Downtown Plan (1985). Urban design analyses for: Rincon Hill Plan (1985); North of Market Plan (1985); Chinatown Plan (1986); and Neighborhood Commercial Rezoning Study (1985)."
+    },
+    {
+      "company": "Environmental Science Associates",
+      "location": "San Francisco, CA",
+      "title": "City Planner",
+      "period": "1981 - 1983",
+      "details": "Evaluations of buildings and districts for municipal Master Plans, Environmental Impact Reports, and the National Register of Historic Places."
+    }
+  ],
+  "books": [
+    {
+      "title": "Hella Town: Oakland\u2019s History of Development and Disruption",
+      "publisher": "University of California Press",
+      "year": "2021",
+      "pages": "412 pp.",
+      "url": "https://www.goodreads.com/book/show/57486117",
+      "featured": true,
+      "description": "A comprehensive narrative history of Oakland's built environment, detailing how transportation improvements, systemic racism, and regional competition have shaped the city. It explores how past political and economic decisions continue to influence modern-day urban conditions, such as housing costs and social inequality."
+    },
+    {
+      "title": "Architecture of the San Francisco Bay Area: History and Guide",
+      "publisher": "William Stout Press",
+      "year": "2007",
+      "pages": "188 pp.",
+      "url": "https://www.goodreads.com/book/show/1538804",
+      "featured": true,
+      "description": "An essential architectural history and fieldwork guide of the San Francisco Bay Area, tracing key movements, architects, and landmark structures that define the region's unique urban landscape."
+    },
+    {
+      "title": "Zoomscape: Architecture in Motion and Media",
+      "publisher": "Princeton Architectural Press",
+      "year": "2004",
+      "pages": "320 pp.",
+      "url": "https://www.goodreads.com/book/show/1369919",
+      "featured": true,
+      "description": "An exploration of how the perception of architecture has been fundamentally transformed by modern speed (trains, cars, planes) and media (photography, film, television), defining the dynamic visual environment of the 'zoomscape'."
+    },
+    {
+      "title": "Architecture and Design: San Francisco",
+      "publisher": "The Understanding Business",
+      "year": "1998",
+      "pages": "81 pp.",
+      "url": "https://www.goodreads.com/book/show/1538807",
+      "featured": false,
+      "description": "A visual guide detailing the urban history, styles, and significant building achievements of San Francisco."
+    },
+    {
+      "title": "German Architectural Theory and the Search for Modern Identity",
+      "publisher": "Cambridge University Press",
+      "year": "1995",
+      "pages": "384 pp.",
+      "url": "https://www.goodreads.com/book/show/1538806",
+      "featured": true,
+      "description": "The first comprehensive English overview of architectural theory debates in nineteenth-century Austria and Germany, detailing how industrialization and the search for national identity shaped modern design principles."
+    }
+  ],
+  "edited_works": [
+    {
+      "title": "Contemporary San Francisco Map and Guide",
+      "publisher": "Blue Crow Media",
+      "year": "2023",
+      "pages": "2 pp.",
+      "url": "https://bluecrowmedia.com/products/san-francisco-contemporary-architecture-map"
+    },
+    {
+      "title": "Modernist San Francisco Map and Guide",
+      "publisher": "Blue Crow Media",
+      "year": "2020",
+      "pages": "2 pp.",
+      "url": "https://bluecrowmedia.com/products/modernist-san-francisco-map"
+    },
+    {
+      "title": "Jeremy Blake: Winchester",
+      "editor": "Benjamin Weil, Mitchell Schwarzer, Jeremy Blake",
+      "publisher": "San Francisco Museum of Modern Art",
+      "year": "2005",
+      "details": "Includes my article, 'How the West was Won,' 62-69",
+      "url": "https://www.sfmoma.org/exhibition/jeremy-blake/"
+    },
+    {
+      "title": "'Tectonics Unbound,' ANY 14",
+      "editor": "Mitchell Schwarzer",
+      "year": "1996",
+      "details": "Includes my introductory essay and conclusion 'Tectonics of the Unforseen,' 12-15, 62-65. Reprinted in Harry Francis Mallgrave & Christina Contandriopoulos, Architectural Theory: Volume II (Wiley-Blackwell, 2008), 551-552; reprinted in Time & Architecture 4 (July 2011), 140-141.",
+      "url": "https://www.google.com/books/edition/ANY/bZ9RAAAAMAAJ"
+    }
+  ],
+  "chapters": [
+    {
+      "title": "Electric City Land: Architecture and Media",
+      "book": "The Routledge Companion to Contemporary Architectural History",
+      "editor": "Duanfang Lu",
+      "publisher": "Routledge",
+      "year": "2024",
+      "pages": "377-391",
+      "url": "https://www.routledge.com/The-Routledge-Companion-to-Contemporary-Architectural-History/Lu/p/book/9781138481862"
+    },
+    {
+      "title": "The Infrastructure of Place",
+      "book": "The Routledge Handbook of People and Place in the 21st Century",
+      "editor": "Kate Bishop & Nancy Marshall",
+      "publisher": "Routledge",
+      "year": "2020",
+      "pages": "187-196",
+      "url": "https://www.routledge.com/The-Routledge-Handbook-of-People-and-Place-in-the-21st-Century/Bishop-Marshall/p/book/9781138091177"
+    },
+    {
+      "title": "From Sewers to Selfies: The Evolution of Photography into Infrastructure",
+      "book": "Picturing America: Photography and the Sense of Place",
+      "editor": "Julia Faisst & Kerstin Schmidt",
+      "publisher": "Brill Rodopi",
+      "year": "2019",
+      "pages": "12-31",
+      "url": "https://brill.com/display/title/54823"
+    },
+    {
+      "title": "German Tectonics",
+      "book": "The Companion to the History of Architecture, Volume III, Nineteenth-Century Architecture",
+      "editor": "Martin Bressani & Christina Contrandriopoulos",
+      "publisher": "John Wiley & Sons, Inc",
+      "year": "2017",
+      "pages": "190-202",
+      "url": "https://www.wiley.com/en-us/The+Companion+to+the+History+of+Architecture-p-9781444338515"
+    },
+    {
+      "title": "The Conceptual Roots of Infrastructure",
+      "book": "Intelligent Infrastructure: Zip Cars, Invisible Networks, and Urban Transformation",
+      "editor": "Therese Tierney",
+      "publisher": "University of Virginia Press",
+      "year": "2017",
+      "pages": "39-62",
+      "url": "https://books.google.com/books?id=H2U8DwAAQBAJ"
+    },
+    {
+      "title": "The Sources of Architectural Nationalism",
+      "book": "Nationalism and Architecture",
+      "editor": "Raymond Quek, Darren Deane & Sarah Butler",
+      "publisher": "Ashgate Publishing",
+      "year": "2012",
+      "pages": "19-38",
+      "url": "https://www.routledge.com/Nationalism-and-Architecture/Quek-Deane-Butler/p/book/9781138271500"
+    },
+    {
+      "title": "Kuth-Ranieri\u2019s Performance of Modernism",
+      "book": "Kuth-Ranieri Architecture",
+      "editor": "Byron Kuth & Elizabeth Ranieri",
+      "publisher": "Princeton Architectural Press",
+      "year": "2010",
+      "pages": "93-97",
+      "url": "https://www.amazon.com/Kuth-Ranieri-Architecture-Byron-Kuth/dp/1568988672"
+    },
+    {
+      "title": "Toward a California Judaism",
+      "book": "Daniel Libeskind and the Contemporary Jewish Museum: New Jewish Architecture from Berlin to San Francisco",
+      "publisher": "Rizzoli",
+      "year": "2008",
+      "pages": "38-43",
+      "url": "https://www.rizzoliusa.com/book/9780847831418/"
+    },
+    {
+      "title": "Skyscraper Stories",
+      "book": "Vertical Places: The Tall Building in the World City",
+      "editor": "Neal Schwartz",
+      "publisher": "California College of the Arts",
+      "year": "2008",
+      "pages": "50-57",
+      "url": "https://cca.edu/"
+    },
+    {
+      "title": "Form Follows Friction",
+      "book": "The de Young in the 21st Century",
+      "editor": "Diana Ketchum",
+      "publisher": "Thames and Hudson",
+      "year": "2005",
+      "pages": "40-57",
+      "url": "https://thamesandhudson.com"
+    },
+    {
+      "title": "Architecture and Mass Tourism",
+      "book": "Architourism: Authentic, Exotic, Escapist, Spectacular",
+      "editor": "Joan Ockman",
+      "publisher": "Prestel Verlag",
+      "year": "2005",
+      "pages": "12-33",
+      "url": "https://books.google.com/books?id=f89MAAAACAAJ"
+    },
+    {
+      "title": "Forms of the Grid",
+      "book": "Chicago Architecture: Histories, Revisions, Alternatives",
+      "editor": "Charles Waldheim & Katerina Ruedi Ray",
+      "publisher": "University of Chicago Press",
+      "year": "2005",
+      "pages": "196-206",
+      "url": "https://press.uchicago.edu/ucp/books/book/chicago/C/bo3631980.html"
+    },
+    {
+      "title": "San Francisco in an Age of Reaction",
+      "book": "Shaping the City: Studies in History, Theory, & Urban Design",
+      "editor": "Rodolphe El-Khoury & Ed Robbins",
+      "publisher": "Routledge",
+      "year": "2004",
+      "details": "2013 \u2013 second edition",
+      "pages": "177-193",
+      "url": "https://www.routledge.com/Shaping-the-City-Studies-in-History-Theory-and-Urban-Design/El-Khoury-Robbins/p/book/9780415668873"
+    },
+    {
+      "title": "The Moving Landscape",
+      "book": "Monument and Memory, Made and Unmade",
+      "editor": "Margaret Olin & Robert S. Nelson",
+      "publisher": "University of Chicago Press",
+      "year": "2003",
+      "pages": "83-102",
+      "url": "https://press.uchicago.edu/ucp/books/book/chicago/M/bo3634125.html"
+    },
+    {
+      "title": "The Consuming Landscape: Architecture in the Films of Michelangelo Antonioni",
+      "book": "Architecture and Film",
+      "editor": "Mark Lamster",
+      "publisher": "Princeton Architectural Press",
+      "year": "2000",
+      "pages": "197-215",
+      "url": "https://www.papress.com/"
+    },
+    {
+      "title": "William Turnbull and the Unveiling of the Country House",
+      "book": "William Turnbull, Jr.: Buildings in the Landscape",
+      "editor": "Dung Ngo",
+      "publisher": "William Stout",
+      "year": "2000",
+      "pages": "43-55",
+      "url": "https://www.stoutbooks.com/"
+    },
+    {
+      "title": "CIAM: City at the End of History",
+      "book": "Autonomy and Ideology: Positioning an Architectural Avantgarde in America",
+      "editor": "R.E. Somol",
+      "publisher": "Monacelli",
+      "year": "1997",
+      "pages": "232-261",
+      "url": "https://books.google.com/books?id=0sBPAAAAMAAJ"
+    },
+    {
+      "title": "Modern Architectural Ideology in Cold War America",
+      "book": "The Education of the Architect: Historiography, Urbanism and the Growth of Architectural Knowledge",
+      "editor": "Martha Pollak",
+      "publisher": "MIT Press",
+      "year": "1997",
+      "pages": "87-109",
+      "url": "https://mitpress.mit.edu/"
+    },
+    {
+      "title": "Schopenhauer's Theory of Architecture",
+      "book": "Schopenhauer, Philosophy and the Arts",
+      "editor": "Dale Jacquette",
+      "publisher": "Cambridge University Press",
+      "year": "1996",
+      "pages": "277-298",
+      "url": "https://www.cambridge.org/us/academic/subjects/philosophy/philosophy-general-interest/schopenhauer-philosophy-and-arts?format=PB&isbn=9780521044066"
+    },
+    {
+      "title": "The Social Genesis of the Public Theater in Germany",
+      "book": "Karl Friedrich Schinkel, 1781-1841: The Drama of Architecture",
+      "editor": "John Zukowsky",
+      "publisher": "Wasmuth",
+      "year": "1994",
+      "pages": "54-67",
+      "url": "https://www.wasmuth-verlag.de/"
+    }
+  ],
+  "scholarly_articles": [
+    {
+      "title": "Oakland Tough: Extreme Masculinity in the Other City by the Bay",
+      "journal": "California History",
+      "volume": "101.3",
+      "year": "2024",
+      "pages": "61-83",
+      "url": "https://online.ucpress.edu/ch/article-abstract/101/3/61/204207/Oakland-ToughExtreme-Masculinity-in-the-Other"
+    },
+    {
+      "title": "Computation and the Impact of New Technologies on the Photography of Architecture and Urbanism",
+      "journal": "Architecture_Media_Politics_Society",
+      "volume": "11.4",
+      "year": "2017",
+      "pages": "1-16",
+      "url": "https://doi.org/10.14324/111.444.amps.2017v11i4.001"
+    },
+    {
+      "title": "Oakland City Center: The Plan to Reposition Downtown within the Bay Region",
+      "journal": "Journal of Planning History",
+      "volume": "14.2",
+      "year": "2015",
+      "pages": "88-111",
+      "url": "https://journals.sagepub.com/doi/abs/10.1177/1538513214543971"
+    },
+    {
+      "title": "A Tale of Two Waterfronts: Oakland\u2019s Jack London Square Competes with San Francisco",
+      "journal": "California History",
+      "volume": "91",
+      "year": "2014",
+      "pages": "6-30",
+      "url": "https://online.ucpress.edu/ch/article-abstract/91/3/6/1572/A-Tale-of-Two-WaterfrontsOakland-s-Jack-London"
+    },
+    {
+      "title": "Landscape Navigator: The Experience of Place on YouTube and Google Maps",
+      "journal": "Harvard Design Magazine",
+      "volume": "36",
+      "year": "2013",
+      "pages": "136-144",
+      "url": "http://www.harvarddesignmagazine.org/issues/36/landscape-navigator-the-experience-of-place-on-youtube-and-google-maps"
+    },
+    {
+      "title": "Animal Wrappers: Endangered Species on the Bus",
+      "journal": "Boom: A Journal of California",
+      "volume": "2.3",
+      "year": "2012",
+      "pages": "62-78",
+      "url": "https://online.ucpress.edu/boom/article/2/3/62/116238/Animal-WrappersEndangered-Species-on-the-Bus"
+    },
+    {
+      "title": "The Philosophy of Architectural Tectonics",
+      "journal": "Studies of Architecture & Culture",
+      "volume": "1",
+      "location": "Nanjing, China",
+      "year": "2009",
+      "pages": "27-73",
+      "url": "https://www.google.com/books/edition/_/zBUpAQAAMAAJ?hl=en"
+    },
+    {
+      "title": "The Extremes of Spatial Experience",
+      "journal": "AA Files",
+      "volume": "57",
+      "year": "2008",
+      "pages": "67-73",
+      "url": "https://www.jstor.org/stable/29792383"
+    },
+    {
+      "title": "Moore Unmoored: Taking that California Trip",
+      "journal": "Journal of Architectural Education",
+      "volume": "57",
+      "year": "2004",
+      "pages": "48-53",
+      "url": "https://www.tandfonline.com/doi/abs/10.1162/104648804772748179"
+    },
+    {
+      "title": "The Architecture of Talmud",
+      "journal": "Journal of the Society of Architectural Historians",
+      "volume": "60",
+      "year": "2001",
+      "pages": "474-487",
+      "url": "https://online.ucpress.edu/jsah/article-abstract/60/4/474/57997/The-Architecture-of-Talmud"
+    },
+    {
+      "title": "The Spectacle of Ordinary Building",
+      "journal": "Harvard Design Magazine",
+      "volume": "12",
+      "year": "2000",
+      "pages": "13-19",
+      "details": "Reprinted in Sprawl and Suburbia, ed. William Saunders (University of Minnesota, 2005): 74-90",
+      "url": "http://www.harvarddesignmagazine.org/issues/12/the-spectacle-of-ordinary-building"
+    },
+    {
+      "title": "Irving Gill & Adolf Loos",
+      "journal": "Encyclopedia of 20th-Century Architecture",
+      "volume": "3 vols.",
+      "editor": "R. Stephen Sennott",
+      "publisher": "Fitzroy & Dearborn",
+      "year": "2004",
+      "pages": "II: 504-506, 790-793",
+      "url": "https://www.routledge.com/Encyclopedia-of-20th-Century-Architecture-3-Volume-Set/Sennott/p/book/9781579582432"
+    },
+    {
+      "title": "The Contemporary City in Four Movements",
+      "journal": "Journal of Urban Design",
+      "volume": "5",
+      "year": "2000",
+      "pages": "127-144",
+      "details": "Reprinted in Urban Studies: Economy & Society, vol 3, ed. Ronan Paddison (Sage Publications, 2010): 151-168",
+      "url": "https://www.tandfonline.com/doi/abs/10.1080/13574800050082987"
+    },
+    {
+      "title": "History and Theory in Architectural Periodicals: Assembling Oppositions",
+      "journal": "Journal of the Society of Architectural Historians",
+      "volume": "58",
+      "year": "1999",
+      "pages": "342-348",
+      "url": "https://online.ucpress.edu/jsah/article-abstract/58/3-4/342/57597/History-and-Theory-in-Architectural-Periodicals"
+    },
+    {
+      "title": "Remembering the Holocaust and its Aftershocks",
+      "journal": "Design Book Review",
+      "volume": "40",
+      "year": "1999",
+      "pages": "8-21",
+      "url": "https://cca.edu"
+    },
+    {
+      "title": "Karl B\u00f6tticher",
+      "journal": "Encyclopedia of Aesthetics",
+      "volume": "4 volumes",
+      "editor": "Michael Kelly",
+      "publisher": "Oxford University Press",
+      "year": "1998",
+      "pages": "I: 291-293",
+      "url": "https://global.oup.com/academic/product/encyclopedia-of-aesthetics-9780199747108?cc=us&lang=en&"
+    },
+    {
+      "title": "Visual Historicism in the Aesthetics of Adolf G\u00f6ller",
+      "journal": "Art History",
+      "volume": "18",
+      "year": "1995",
+      "pages": "568-583",
+      "url": "https://onlinelibrary.wiley.com/journal/14678365"
+    },
+    {
+      "title": "Origins of the Art History Survey Text",
+      "journal": "Art Journal",
+      "volume": "55",
+      "year": "1995",
+      "pages": "24-29",
+      "url": "https://www.tandfonline.com/doi/abs/10.1080/00043249.1995.10791712"
+    },
+    {
+      "title": "Ethnologies of the Primitive in Adolf Loos's Writings on Ornament",
+      "journal": "Nineteenth Century Contexts",
+      "volume": "18",
+      "year": "1994",
+      "pages": "225-247",
+      "url": "https://www.tandfonline.com/doi/abs/10.1080/08905499408583407"
+    },
+    {
+      "title": "Myths of Permanence and Transience in the Discourse on Historic Preservation in the United States",
+      "journal": "Journal of Architectural Education",
+      "volume": "47",
+      "year": "1994",
+      "pages": "2-11",
+      "url": "https://www.tandfonline.com/doi/abs/10.1080/10464883.1994.10734591"
+    },
+    {
+      "title": "Ontology and Representation in Karl B\u00f6tticher's Theory of Tectonics",
+      "journal": "Journal of the Society of Architectural Historians",
+      "volume": "52",
+      "year": "1993",
+      "pages": "267-280",
+      "details": "Reprinted in Time + Architecture (Chinese) 3 (May 2010): 142-151",
+      "url": "https://online.ucpress.edu/jsah/article-abstract/52/3/267/56637/Ontology-and-Representation-in-Karl-Botticher-s"
+    },
+    {
+      "title": "Heinrich H\u00fcbsch and German Architectural Nationalism",
+      "journal": "Architronic",
+      "volume": "2",
+      "year": "1993",
+      "pages": "7-14",
+      "url": "https://oaks.kent.edu/journals/architronic-electronic-journal-architecture/"
+    },
+    {
+      "title": "Historic Character and the Representation of Cultural Diversity",
+      "journal": "Historic Preservation Forum",
+      "volume": "7",
+      "year": "1993",
+      "pages": "42-49",
+      "url": "https://forum.savingplaces.org/"
+    },
+    {
+      "title": "Cosmopolitan Difference in Max Dvor\u00e1k's Art Historiography",
+      "journal": "Art Bulletin",
+      "volume": "74",
+      "year": "1992",
+      "pages": "669-678",
+      "url": "https://www.tandfonline.com/doi/abs/10.1080/00043079.1992.10786596"
+    },
+    {
+      "title": "The Design Prototype as Artistic Boundary: Debates on History and Industry in Central European Applied Arts Museums, 1860-1900",
+      "journal": "Design Issues",
+      "volume": "9",
+      "year": "1992",
+      "pages": "30-44",
+      "details": "Reprinted in Design History: An Anthology, Dennis Doordan, ed. (MIT Press, 1995), 185-199",
+      "url": "https://direct.mit.edu/designissues/article/9/1/30/93444/The-Design-Prototype-as-Artistic-Boundary-The"
+    },
+    {
+      "title": "The Emergence of Architectural Space: August Schmarsow's Theory of Raumgestaltung",
+      "journal": "Assemblage",
+      "volume": "15",
+      "year": "1991",
+      "pages": "49-61",
+      "url": "https://www.jstor.org/stable/3171122"
+    },
+    {
+      "title": "Gathered this Unruly Folk: The Textual Colligation of Historical Knowledge on Architecture",
+      "journal": "Journal of Architectural Education",
+      "volume": "44",
+      "year": "1991",
+      "pages": "144-149",
+      "url": "https://www.tandfonline.com/doi/abs/10.1080/10464883.1991.10734479"
+    }
+  ],
+  "essays": [
+    {
+      "title": "Michelangelo or Mies",
+      "publication": "MIT\u2019s HTC: The First 50 Years",
+      "year": "forthcoming",
+      "url": "https://architecture.mit.edu"
+    },
+    {
+      "title": "Oakland\u2019s Perils and Promises: The author of Hella Town on this city\u2019s past and future",
+      "publication": "Carnegie California (Interview by Kiran Jain)",
+      "date": "April 11, 2025",
+      "url": "https://carnegieendowment.org/posts/2025/04/oakland-perils-promises-hella-town?lang=en"
+    },
+    {
+      "title": "Pourquoi les centres-villes s\u2019appellent-ils `Downtown\u2019 aux Etas-Unis?",
+      "publication": "French Morning (by Alexis Buisson)",
+      "date": "5 July 2023",
+      "url": "https://frenchmorning.com/pourquoi-les-centres-villes-sappellent-ils-downtown-aux-etats-unis/"
+    },
+    {
+      "title": "What New York City Taught Me About Oakland\u2019s Urban Landscape",
+      "publication": "UC Press Blog",
+      "year": "2022",
+      "url": "https://www.ucpress.edu/blog/58420/what-nyc-taught-me-about-oaklands-urban-landscape/"
+    },
+    {
+      "title": "Ghost Wards Revisited",
+      "publication": "Thresholds 50",
+      "year": "2022",
+      "pages": "49-66",
+      "url": "https://www.mitpressjournals.org/loi/thld"
+    },
+    {
+      "title": "Privatizing the City: Oakland\u2019s Lopsided Boom",
+      "publication": "Places 30",
+      "year": "2019",
+      "url": "https://placesjournal.org/article/privatizing-the-public-city/"
+    },
+    {
+      "title": "Downtown: A Short History of American Urban Exceptionalism",
+      "publication": "Places 27",
+      "date": "February 16, 2016",
+      "url": "https://placesjournal.org/article/downtown-a-short-history-of-american-urban-exceptionalism/"
+    },
+    {
+      "title": "The Emergence of Container Urbanism",
+      "publication": "Places 25",
+      "date": "February 12, 2013",
+      "url": "https://placesjournal.org/article/the-emergence-of-container-urbanism/"
+    },
+    {
+      "title": "Visual Criticism in the Golden Land",
+      "publication": "Elastic Journal 1",
+      "date": "September 2, 2011",
+      "url": "https://cca.edu"
+    },
+    {
+      "title": "A Sense of Place, a World of Augmented Reality",
+      "publication": "Places 22",
+      "date": "June 8 & 9, 2010",
+      "details": "Parts 1 & 2",
+      "url": "https://placesjournal.org/article/a-sense-of-place-a-world-of-augmented-reality-part-1/"
+    },
+    {
+      "title": "The Tree Canopy as Blueprint",
+      "publication": "AD: Architectural Design 80",
+      "date": "May/June 2010",
+      "pages": "20-27",
+      "url": "https://onlinelibrary.wiley.com/journal/15289877"
+    },
+    {
+      "title": "Inside Vs. Outside: Raphael Vinoly\u2019s Helen Diller Family Cancer Research Building at UCSF",
+      "publication": "The Architect\u2019s Newspaper",
+      "date": "July 15, 2009",
+      "pages": "10",
+      "url": "https://archpaper.com/"
+    },
+    {
+      "title": "Planning in Pieces",
+      "publication": "The Urbanist 482",
+      "date": "June 7, 2009",
+      "pages": "35-37",
+      "url": "https://www.spur.org/publications/urbanist"
+    },
+    {
+      "title": "Bay Watch: New Projects for San Francisco",
+      "publication": "Architectural Record 197",
+      "date": "January 2009",
+      "pages": "55-57",
+      "url": "https://www.architecturalrecord.com/"
+    },
+    {
+      "title": "Libeskind\u2019s Ode to Life",
+      "publication": "The Architect\u2019s Newspaper",
+      "date": "June 16, 2008",
+      "pages": "7",
+      "url": "https://archpaper.com/"
+    },
+    {
+      "title": "The Architecture of Patronage",
+      "publication": "ArcCA 7.1 & 7.2",
+      "year": "2007",
+      "pages": "21-24 & 28-31",
+      "url": "https://arccadigest.org/architecture-patronage-part-i/"
+    },
+    {
+      "title": "Windows on the World: Anne Fougeron\u2019s Houses",
+      "publication": "California Homes 11",
+      "date": "January/February 2007",
+      "pages": "76-79",
+      "url": "https://www.calhomes.com/"
+    },
+    {
+      "title": "A Exurban House",
+      "publication": "Dwell Magazine 3",
+      "date": "January-February 2003",
+      "pages": "84-88",
+      "url": "https://www.dwell.com/"
+    },
+    {
+      "title": "Past St. Louis",
+      "publication": "Harvard Design Magazine 16",
+      "date": "Winter-Spring 2002",
+      "pages": "52-61",
+      "url": "http://www.harvarddesignmagazine.org/"
+    },
+    {
+      "title": "San Francisco by Numbers: Planning after the 2000 Census",
+      "publication": "SPUR 397",
+      "date": "July 2001",
+      "pages": "1, 3-8",
+      "url": "https://www.spur.org/"
+    },
+    {
+      "title": "Beyond the Valley of Silicon Architecture",
+      "publication": "Harvard Design Magazine 7",
+      "date": "Winter/Spring 1999",
+      "pages": "15-21",
+      "url": "http://www.harvarddesignmagazine.org/issues/7/beyond-the-valley-of-silicon-architecture"
+    },
+    {
+      "title": "Ghost Wards: The Flight of Capital from History",
+      "publication": "Thresholds 16",
+      "date": "Spring 1998",
+      "pages": "10-19",
+      "url": "https://www.mitpressjournals.org/loi/thld"
+    },
+    {
+      "title": "Off-World in the Far West: On Yosemite Valley and the Las Vegas Strip",
+      "publication": "Harvard Design Magazine 4",
+      "date": "Winter/Spring 1998",
+      "pages": "60-65",
+      "url": "https://www.harvarddesignmagazine.org/issues/popular-places-plus-books-on-cities-and-urbanism/"
+    }
+  ],
+  "reviews": [
+    {
+      "title": "Review of Joe William Trotter, Building the Black City: The Transformation of American Life",
+      "journal": "California History",
+      "volume": "102.3",
+      "year": "2025",
+      "pages": "110-113",
+      "url": "https://online.ucpress.edu/ch/article-abstract/102/2/86/208579/Review-Building-the-Black-City-The"
+    },
+    {
+      "title": "Review of Eric Porter, A People\u2019s History of SFO: The Making of the Bay Area and an Airport",
+      "journal": "California History",
+      "volume": "100.4",
+      "year": "2023",
+      "pages": "131-134",
+      "url": "https://online.ucpress.edu/ch/article-abstract/100/4/89/194883/Review-A-People-s-History-of-SFO-The-Making-of"
+    },
+    {
+      "title": "Review of Michelle Henning, Photography: The Unfettered Image",
+      "journal": "Kritikon Litterarum",
+      "volume": "46.3-4",
+      "year": "2019",
+      "pages": "299-303",
+      "url": "https://kulturwissenschaftlichezeitschrift.de/"
+    },
+    {
+      "title": "Review of Daniel Purdy, On the Ruins of Babel: Architectural Metaphor in German Thought",
+      "journal": "Journal of the Society of Architectural Historians",
+      "volume": "72",
+      "year": "2012",
+      "pages": "560-561",
+      "url": "https://online.ucpress.edu/jsah/article-abstract/71/4/570/57321/Review-On-the-Ruins-of-Babel-Architectural"
+    },
+    {
+      "title": "Review of Eric Bricker (dir.), Visual Acoustics: The Modernism of Julius Shulman",
+      "journal": "Journal of the Society of Architectural Historians",
+      "volume": "71",
+      "year": "2012",
+      "pages": "109-111",
+      "url": "https://online.ucpress.edu/jsah/article-abstract/71/1/113/57608/Review-Visual-Acoustics-The-Modernism-of-Julius"
+    },
+    {
+      "title": "Review of Gavriel Rosenfeld, Building after Auschwitz: Jewish Architecture and the Memory of the Holocaust",
+      "journal": "Places",
+      "date": "February 2, 2012",
+      "url": "https://placesjournal.org/article/building-after-auschwitz/"
+    }
+  ],
+  "regional_activities": [
+    {
+      "title": "Episode 129: Not on the Wealth Corridor: Why Older Neighborhoods Get Left Behind",
+      "type": "Podcast",
+      "source": "East Bay Yesterday Podcast",
+      "date": "May 20, 2025",
+      "url": "https://eastbayyesterday.com/episodes/not-on-the-wealth-corridor/"
+    },
+    {
+      "title": "It was one of Oakland\u2019s Oldest Most Important Neighborhoods: Here\u2019s the Plan to Restore it to its Former Glory",
+      "type": "Article",
+      "source": "San Francisco Chronicle",
+      "date": "March 30, 2025",
+      "url": "https://www.sfchronicle.com/opinion/openforum/article/san-antonio-oakland-infill-bart-station-19374026.php"
+    },
+    {
+      "title": "Speech on the National Register Recognition of the 16th Street Train Station",
+      "type": "TV Appearance",
+      "source": "KGO Television News",
+      "date": "March 9, 2025",
+      "url": "",
+      "url_unavailable": true
+    },
+    {
+      "title": "Roundtable panelist, Comparative Urbanism: Learning from Jakarta",
+      "type": "Panel",
+      "source": "San Francisco Planning & Research (SPUR)",
+      "date": "August 23, 2024",
+      "url": "",
+      "url_unavailable": true
+    },
+    {
+      "title": "KALW interview on West Oakland history",
+      "type": "Radio Interview",
+      "source": "KALW",
+      "date": "March 2024",
+      "url": "https://www.kalw.org/news/2024-04-17/esthers-orbit-room-builds-on-its-history-as-a-black-cultural-hub-in-west-oakland"
+    },
+    {
+      "title": "A History of Development and Disruption: Hella Town",
+      "type": "Radio Interview",
+      "source": "Making Contact Radio, KPFA",
+      "date": "June 14, 2023",
+      "url": "https://www.makingcontactradio.org/city-lines-oaklands-history-of-development-and-disruption/"
+    },
+    {
+      "title": "The Future Looks Bright for Children\u2019s Fairyland",
+      "type": "Podcast",
+      "source": "Bay Curious Podcast, KQED",
+      "date": "May 4, 2023",
+      "url": "https://www.kqed.org/news/11948422/the-future-looks-bright-for-childrens-fairyland-as-it-seeks-to-better-reflect-oaklands-cultural-rainbow"
+    },
+    {
+      "title": "Interview on Hella Town",
+      "type": "Podcast Interview",
+      "source": "New Books Network Podcast",
+      "date": "February 21, 2023",
+      "url": "https://newbooksnetwork.com/hella-town"
+    },
+    {
+      "title": "Hella Town reading on Crosscurrents",
+      "type": "Radio Reading",
+      "source": "KALW Radio",
+      "date": "May 3, 2022",
+      "url": "https://www.kalw.org/show/crosscurrents/2022-05-03/an-architectural-historians-perspective-on-oaklands-developmental-history"
+    },
+    {
+      "title": "How Oakland\u2019s 16th Street Train Station Helped Build West Oakland and the Modern Civil Rights Movement",
+      "type": "Podcast",
+      "source": "Bay Curious Podcast, KQED",
+      "date": "April 14, 2022",
+      "url": "https://www.kqed.org/news/11910609/how-oaklands-16th-street-train-station-helped-build-west-oakland"
+    },
+    {
+      "title": "Interview about Hella Town with Alexis Madrigal",
+      "type": "Radio Interview",
+      "source": "KQED Forum",
+      "date": "November 5, 2021",
+      "url": "https://www.kqed.org/forum/20101888062/hella-town-traces-the-history-of-oakland-through-its-built-environment"
+    },
+    {
+      "title": "There\u2019s No Reason to be San Francisco: the Mixed Legacy of Oakland\u2019s Ambition",
+      "type": "Podcast",
+      "source": "East Bay Yesterday Podcast (Episode 80)",
+      "date": "September 17, 2021",
+      "url": "https://eastbayyesterday.com/episodes/theres-no-reason-to-be-san-francisco/"
+    },
+    {
+      "title": "Winchester Mystery House",
+      "type": "Podcast",
+      "source": "99% Invisible Podcast",
+      "date": "April 28, 2015",
+      "url": "https://99percentinvisible.org/episode/mystery-house/"
+    }
+  ],
+  "courses": {
+    "lectures": [
+      "Chicago Architecture and Urbanism",
+      "History of Architecture, Antiquity to Baroque",
+      "History of Architecture, Enlightenment to Postmodern",
+      "Introduction to the Arts",
+      "Introduction to the Modern Arts",
+      "Nineteenth-Century Architecture",
+      "Twentieth-Century Architecture"
+    ],
+    "seminars": [
+      "Architectural Theory from Vitruvius to Semper",
+      "The Avant Garde",
+      "The City in Film and Literature",
+      "Enlightenment Aesthetics",
+      "German Romanticism",
+      "Historiography of the Visual Arts",
+      "Information Cities",
+      "Institutional Structures of Modernity",
+      "Landscape",
+      "Marxist Art and Cultural Criticism",
+      "Hella Oakland",
+      "Perceptions",
+      "Recreational Spirituality",
+      "Sites",
+      "Suburbia",
+      "Technological Aesthetics",
+      "Tectonics: Fabricating Construction"
+    ],
+    "workshops": [
+      "Arts Criticism",
+      "The Personal Essay"
+    ]
+  },
+  "fellowships": [
+    "CCA Research Development Grant (2015, 2006)",
+    "CCA Travel Grants (2005, 2000, 1997)",
+    "Graham Foundation grant for research and symposium on architectural journalism, 1997",
+    "Institute for the Humanities Fellowship for research on aesthetics, University of Illinois at Chicago, 1995",
+    "Fulbright Grant for doctoral research, Technical University of Vienna, Austria, 1989-1990",
+    "German Academic Exchange Service Fellowship, University of Marburg, Germany, June-July 1987",
+    "Massachusetts Institute of Technology Tuition scholarship for doctoral study, 1986-1987, 1987-1988, 1989-1990"
+  ],
+  "community": [
+    "Editorial Board: Thresholds, Cambridge MA (1997-2002)",
+    "Editorial Board: Design Issues, Pittsburgh PA (1993-1998)",
+    "Editorial Board: William Stout Press, San Francisco CA (1997-2007)"
+  ],
+  "videos": [
+    {
+      "title": "Hella Town: Oakland's History of Development and Disruption Audiobook Preview",
+      "url": "https://www.youtube.com/watch?v=N_lUu7D1QYw",
+      "source": "Google Play Books (YouTube)",
+      "date": "Dec 30, 2021",
+      "snippet": "Audiobook preview and sample of Hella Town, exploring the development of Oakland."
+    },
+    {
+      "title": "AIA East Bay: Hella Town Book Discussion",
+      "url": "https://www.youtube.com/watch?v=kYJ_x2l5u80",
+      "source": "AIA East Bay (YouTube)",
+      "date": "Aug 4, 2022",
+      "snippet": "A hybrid presentation on the architectural planning, development, and transportation history of Oakland."
+    },
+    {
+      "title": "Mitchell Schwarzer in Conversation: Realtors and American Housing Policy",
+      "url": "",
+      "source": "California College of the Arts",
+      "date": "Nov 5, 2021",
+      "snippet": "Conversation between Hella Town author Mitchell Schwarzer and former Oakland Mayor Libby Schaaf on urban development.",
+      "url_unavailable": true
+    }
+  ],
+  "lectures": [
+    {
+      "title": "Zoomscape: Spatial Perception in the Digital Age",
+      "url": "https://www.uni-koeln.de",
+      "institution": "University of Cologne",
+      "date": "2018",
+      "snippet": "Guest lecture exploring how modern speed (trains, cars) and digital media alter architectural perception."
+    },
+    {
+      "title": "History of Bay Area Architecture Lecture Series",
+      "url": "https://www.aiaeb.org",
+      "institution": "AIA East Bay",
+      "date": "2023",
+      "snippet": "A curated lecture series investigating historic preservation movements and regional styling."
+    },
+    {
+      "title": "Comparative Urbanism: Learning from Jakarta",
+      "url": "https://www.spur.org",
+      "institution": "SPUR",
+      "date": "Aug 23, 2024",
+      "snippet": "Roundtable presentation and panel discussion comparing global urban development models."
+    }
+  ]
+};
+
+// Mitchell Schwarzer Portfolio website logic
+document.addEventListener("DOMContentLoaded", () => {
+  // Global CV Data Store
+  let cvData = null;
+  let activeTab = "scholarly_articles";
+  let searchQuery = "";
+  let itemsLimit = 10;
+  
+  // Elements
+  const educationContainer = document.getElementById("education-container");
+  const timelineContainer = document.getElementById("timeline-container");
+  const featuredBooksContainer = document.getElementById("featured-books-container");
+  const hubItemsContainer = document.getElementById("hub-items-container");
+  const searchInput = document.getElementById("search-input");
+  const hubTabs = document.getElementById("hub-tabs");
+  const loadMoreBtn = document.getElementById("load-more-btn");
+  const coursesGrid = document.getElementById("courses-grid");
+  const fellowshipsContainer = document.getElementById("fellowships-container");
+  const communityContainer = document.getElementById("community-container");
+  const currentYearSpan = document.getElementById("current-year");
+  const themeBtn = document.getElementById("theme-btn");
+  const mainHeader = document.getElementById("main-header");
+  
+  // Set Current Year
+  currentYearSpan.textContent = new Date().getFullYear();
+  
+  // Initialize Theme (Always default to light mode on start to show warm cream background)
+  const savedTheme = "light";
+  document.documentElement.setAttribute("data-theme", savedTheme);
+  localStorage.setItem("theme", savedTheme);
+  
+  // Theme Toggle Click Handler
+  themeBtn.addEventListener("click", () => {
+    const currentTheme = document.documentElement.getAttribute("data-theme");
+    const newTheme = currentTheme === "dark" ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", newTheme);
+    localStorage.setItem("theme", newTheme);
+  });
+  
+  // Sticky Header Scroll effect
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 50) {
+      mainHeader.classList.add("scrolled");
+    } else {
+      mainHeader.classList.remove("scrolled");
+    }
+    highlightNavLink();
+  });
+  
+  // Fetch CV data
+    cvData = localCvData;
+  renderPortfolio();
+    
+  // Render main layout components
+  function renderPortfolio() {
+    if (!cvData) return;
+    
+    // Render Education
+    renderEducation(cvData.education);
+    
+    // Render Experience Timeline
+    renderTimeline(cvData.positions, cvData.professional_experience);
+    
+    // Render Books
+    renderBooks(cvData.books);
+    
+    // Render Publications Hub (initial view)
+    renderHub();
+    
+    // Render Courses
+    renderCourses(cvData.courses);
+    
+    // Render Fellowships & Grants
+    renderFellowships(cvData.fellowships);
+    
+    // Render Editorial Boards / Community
+    renderCommunity(cvData.community);
+
+    // Render Hero Profiles
+    renderHeroProfiles(cvData.personal.external_links);
+  }
+  
+  // Render Profiles in Hero
+  function renderHeroProfiles(links) {
+    const container = document.getElementById("hero-profiles-container");
+    if (!container || !links) return;
+    container.innerHTML = links.map(link => `
+      <a href="${link.url}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="font-size: 0.85rem; padding: 0.5rem 1rem; display: inline-flex; align-items: center; gap: 0.5rem; border: 1px solid var(--border-color); background-color: var(--bg-secondary); color: var(--text-primary); border-radius: var(--border-radius-sm); font-weight: 500; transition: var(--transition);">
+        ${link.name}
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="7" y1="17" x2="17" y2="7"></line>
+          <polyline points="7 7 17 7 17 17"></polyline>
+        </svg>
+      </a>
+    `).join('');
+  }
+  
+  // Education Rendering
+  function renderEducation(education) {
+    educationContainer.innerHTML = education.map(edu => `
+      <div class="edu-item">
+        <h4 class="edu-degree">${edu.degree} in ${edu.field}</h4>
+        <p class="edu-inst">${edu.institution}, ${edu.location}</p>
+        <p class="edu-date">${edu.date}</p>
+        ${edu.details ? `<p class="edu-detail">${edu.details}</p>` : ''}
+      </div>
+    `).join('');
+  }
+  
+  // Positions and Professional Timeline Rendering
+  function renderTimeline(positions, experience) {
+    const timelineItems = [];
+    
+    // 1. Gather Faculty Positions
+    positions.forEach(pos => {
+      pos.roles.forEach(role => {
+        timelineItems.push({
+          date: role.period,
+          title: role.title,
+          sub: `${pos.institution} (${pos.location})`,
+          desc: pos.department || "",
+          admin: role.administrative || null,
+          sortDate: parseSortDate(role.period)
+        });
+      });
+    });
+    
+    // 2. Gather City Planner Experience
+    experience.forEach(exp => {
+      timelineItems.push({
+        date: exp.period,
+        title: exp.title,
+        sub: `${exp.company} (${exp.location})`,
+        desc: exp.details,
+        admin: null,
+        sortDate: parseSortDate(exp.period)
+      });
+    });
+    
+    // Sort timeline items chronologically (latest first)
+    timelineItems.sort((a, b) => b.sortDate - a.sortDate);
+    
+    // Render Timeline Items
+    timelineContainer.innerHTML = timelineItems.map((item, idx) => `
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">${item.date}</div>
+        <div class="timeline-content">
+          <h3 class="timeline-title">${item.title}</h3>
+          <p class="timeline-sub">${item.sub}</p>
+          <p class="timeline-desc">${item.desc}</p>
+          ${item.admin ? `
+            <ul class="timeline-admin">
+              ${item.admin.map(adminItem => `<li>${adminItem}</li>`).join('')}
+            </ul>
+          ` : ''}
+        </div>
+      </div>
+    `).join('');
+  }
+  
+  // Book Showcases
+  function renderBooks(books) {
+    // Only display books in books section (featured books first)
+    const sortedBooks = [...books].sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0));
+    
+    featuredBooksContainer.innerHTML = sortedBooks.map(book => {
+      // Create short visual title for book covers
+      let shortTitle = book.title;
+      if (book.title.includes(":")) {
+        shortTitle = book.title.split(":")[0];
+      }
+      
+      return `
+        <article class="book-card">
+          <div class="book-cover-mock">
+            <h3 class="book-cover-title">${shortTitle}</h3>
+            <span class="book-cover-tag">${book.year}</span>
+          </div>
+          <div class="book-info">
+            <span class="book-meta">${book.publisher} • ${book.pages}</span>
+            <h3 class="book-title">${book.title}</h3>
+            <p class="book-desc">${book.description || ""}</p>
+            ${book.url ? `
+              <a href="${book.url}" target="_blank" rel="noopener noreferrer" class="book-link" aria-label="Purchase or view ${book.title}">
+                Publisher Details 
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </a>
+            ` : ''}
+          </div>
+        </article>
+      `;
+    }).join('');
+  }
+  
+  // Dynamic Publications / Media Hub rendering
+  function renderHub() {
+    if (!cvData) return;
+    
+    // Select correct database field
+    let list = [];
+    let itemType = "";
+    
+    if (activeTab === "scholarly_articles") {
+      list = cvData.scholarly_articles;
+      itemType = "Scholarly Article";
+    } else if (activeTab === "chapters") {
+      list = cvData.chapters;
+      itemType = "Book Chapter";
+    } else if (activeTab === "essays") {
+      list = cvData.essays;
+      itemType = "Essay";
+    } else if (activeTab === "reviews") {
+      list = cvData.reviews;
+      itemType = "Review";
+    } else if (activeTab === "lectures") {
+      list = cvData.lectures;
+      itemType = "Lecture";
+    } else if (activeTab === "interviews_media") {
+      // Combine videos and regional_activities
+      const videos = cvData.videos || [];
+      const regional = cvData.regional_activities || [];
+      
+      const mappedVideos = videos.map(v => ({
+        title: v.title,
+        type: "Video",
+        source: v.source,
+        date: v.date,
+        url: v.url,
+        details: v.snippet || ""
+      }));
+      
+      const mappedRegional = regional.map(r => ({
+        title: r.title,
+        type: r.type || "Media/Activity",
+        source: r.source,
+        date: r.date,
+        url: r.url,
+        details: r.details || ""
+      }));
+      
+      list = [...mappedVideos, ...mappedRegional];
+      
+      // Chronological sort helper
+      const parseItemDate = (dateStr) => {
+        if (!dateStr) return 0;
+        const d = Date.parse(dateStr);
+        if (!isNaN(d)) return d;
+        const yearMatch = dateStr.match(/\d{4}/);
+        if (yearMatch) {
+          let val = parseInt(yearMatch[0]);
+          const months = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"];
+          const lowercase = dateStr.toLowerCase();
+          for (let i = 0; i < months.length; i++) {
+            if (lowercase.includes(months[i])) {
+              return val * 12 + i;
+            }
+          }
+          return val * 12;
+        }
+        return 0;
+      };
+      
+      list.sort((a, b) => parseItemDate(b.date) - parseItemDate(a.date));
+      itemType = "Interviews & Media";
+    }
+    
+    // Apply Search Filter
+    let filteredList = list;
+    if (searchQuery.trim() !== "") {
+      const query = searchQuery.toLowerCase();
+      filteredList = list.filter(item => {
+        const titleMatch = (item.title || "").toLowerCase().includes(query);
+        const journalMatch = (item.journal || "").toLowerCase().includes(query);
+        const bookMatch = (item.book || "").toLowerCase().includes(query);
+        const pubMatch = (item.publication || "").toLowerCase().includes(query);
+        const detailsMatch = (item.details || "").toLowerCase().includes(query);
+        const sourceMatch = (item.source || "").toLowerCase().includes(query);
+        const typeMatch = (item.type || "").toLowerCase().includes(query);
+        const institutionMatch = (item.institution || "").toLowerCase().includes(query);
+        const snippetMatch = (item.snippet || "").toLowerCase().includes(query);
+        
+        return titleMatch || journalMatch || bookMatch || pubMatch || detailsMatch || sourceMatch || typeMatch || institutionMatch || snippetMatch;
+      });
+    }
+    
+    // Pagination slicing
+    const totalItems = filteredList.length;
+    const paginatedList = filteredList.slice(0, itemsLimit);
+    
+    // Render list rows
+    if (totalItems === 0) {
+      hubItemsContainer.innerHTML = `<div class="no-results">No records found matching your query.</div>`;
+      loadMoreBtn.style.display = "none";
+      return;
+    }
+    
+    hubItemsContainer.innerHTML = paginatedList.map(item => {
+      // Build visual meta row based on fields
+      let metaText = "";
+      if (activeTab === "scholarly_articles") {
+        metaText = `Published in <strong>${item.journal}</strong> (${item.year}) ${item.pages ? `, pages ${item.pages}` : ''}`;
+      } else if (activeTab === "chapters") {
+        metaText = `Chapter in <em>${item.book}</em>, ed. ${item.editor || ""} • ${item.publisher} (${item.year})`;
+      } else if (activeTab === "essays") {
+        metaText = `In <strong>${item.publication}</strong> ${item.date ? `(${item.date})` : `(${item.year})`}`;
+      } else if (activeTab === "reviews") {
+        metaText = `Review in <strong>${item.journal}</strong> (${item.year}) ${item.pages ? `, pages ${item.pages}` : ''}`;
+      } else if (activeTab === "lectures") {
+        metaText = `Delivered at <strong>${item.institution}</strong> • ${item.date}`;
+      } else if (activeTab === "interviews_media") {
+        metaText = `<strong>${item.type}</strong> via ${item.source} • ${item.date}`;
+      }
+      
+      const targetUrl = item.url || "#";
+      const hasUrl = item.url && item.url !== "#" && !item.url_unavailable;
+      
+      return `
+        <div class="item-row">
+          <div class="item-main">
+            <div class="item-meta" style="margin-bottom: 0.5rem;">
+              <span class="item-tag">${item.type || itemType}</span>
+              ${item.volume ? `<span class="item-tag" style="background-color: transparent; border: 1px solid var(--border-color);">${item.volume}</span>` : ''}
+              ${!hasUrl ? `
+                <span class="item-tag" style="background-color: transparent; border: 1px dashed var(--border-color); color: var(--text-tertiary); font-size: 0.72rem; font-style: italic; font-weight: 500;">
+                  ${(item.type === "Video" || item.type === "TV Appearance" || item.type === "Radio Interview" || item.type === "Podcast" || activeTab === "interviews_media") ? "Broadcast Unavailable" : "Link Unavailable"}
+                </span>
+              ` : ''}
+            </div>
+            ${hasUrl ? `
+              <a href="${targetUrl}" target="_blank" rel="noopener noreferrer" class="item-title-link">
+                ${item.title}
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 2px; flex-shrink:0;">
+                  <line x1="7" y1="17" x2="17" y2="7"></line>
+                  <polyline points="7 7 17 7 17 17"></polyline>
+                </svg>
+              </a>
+            ` : `
+              <h3 class="item-title-link" style="color: var(--text-primary); cursor: default; hover: none;">${item.title}</h3>
+            `}
+            <p class="item-meta" style="margin-top: 0.25rem;">${metaText}</p>
+            ${item.details ? `<p class="item-meta" style="font-style: italic; margin-top: 0.25rem;">${item.details}</p>` : ''}
+          </div>
+          ${hasUrl ? `
+            <a href="${targetUrl}" target="_blank" rel="noopener noreferrer" class="item-link-btn" aria-label="Read external link: ${item.title}">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          ` : ''}
+        </div>
+      `;
+    }).join('');
+    
+    // Toggle Load More Button
+    if (totalItems > itemsLimit) {
+      loadMoreBtn.style.display = "inline-flex";
+    } else {
+      loadMoreBtn.style.display = "none";
+    }
+  }
+  
+  // Tab Event Listeners
+  hubTabs.addEventListener("click", (e) => {
+    const targetTab = e.target.closest(".tab-btn");
+    if (!targetTab) return;
+    
+    // Update active tab styles
+    hubTabs.querySelectorAll(".tab-btn").forEach(btn => {
+      btn.classList.remove("active");
+      btn.setAttribute("aria-selected", "false");
+    });
+    
+    targetTab.classList.add("active");
+    targetTab.setAttribute("aria-selected", "true");
+    
+    // Reset limits and fetch tab content
+    activeTab = targetTab.dataset.tab;
+    itemsLimit = 10;
+    renderHub();
+  });
+  
+  // Search Box Event Listener
+  searchInput.addEventListener("input", (e) => {
+    searchQuery = e.target.value;
+    itemsLimit = 10; // reset pagination on search
+    renderHub();
+  });
+  
+  // Load More Handler
+  loadMoreBtn.addEventListener("click", () => {
+    itemsLimit += 10;
+    renderHub();
+  });
+  
+  // Render Courses
+  function renderCourses(courses) {
+    coursesGrid.innerHTML = `
+      <div class="course-card">
+        <h3 class="course-card-title">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+          Core Lectures
+        </h3>
+        <ul class="course-list">
+          ${courses.lectures.map(lecture => `<li>${lecture}</li>`).join('')}
+        </ul>
+      </div>
+      <div class="course-card">
+        <h3 class="course-card-title">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+          Seminars
+        </h3>
+        <ul class="course-list">
+          ${courses.seminars.map(seminar => `<li>${seminar}</li>`).join('')}
+        </ul>
+      </div>
+      <div class="course-card">
+        <h3 class="course-card-title">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
+          Workshops
+        </h3>
+        <ul class="course-list">
+          ${courses.workshops.map(workshop => `<li>${workshop}</li>`).join('')}
+        </ul>
+      </div>
+    `;
+  }
+  
+  // Render Grants & Fellowships
+  function renderFellowships(fellowships) {
+    fellowshipsContainer.innerHTML = fellowships.map(f => `
+      <div class="fellowship-item">${f}</div>
+    `).join('');
+  }
+  
+  // Render Editorial Boards
+  function renderCommunity(community) {
+    communityContainer.innerHTML = community.map(c => `
+      <div class="fellowship-item" style="border-color: var(--border-color);">${c}</div>
+    `).join('');
+  }
+  
+  // Timeline sorting date helper
+  function parseSortDate(periodStr) {
+    const cleanStr = periodStr.split("-")[0].trim().toLowerCase();
+    
+    // Extract year using regex
+    const yearMatch = cleanStr.match(/\d{4}/);
+    if (yearMatch) {
+      let yearVal = parseInt(yearMatch[0]);
+      
+      // Fine-tune order for Spring/Fall in same year
+      if (cleanStr.includes("fall")) {
+        return yearVal + 0.5;
+      }
+      if (cleanStr.includes("spring")) {
+        return yearVal + 0.1;
+      }
+      return yearVal;
+    }
+    
+    return 0; // Default fallback
+  }
+  
+  // Programmatic Tab Switcher
+  function switchTab(tabName) {
+    const targetBtn = hubTabs.querySelector(`[data-tab="${tabName}"]`);
+    if (!targetBtn) return;
+    
+    hubTabs.querySelectorAll(".tab-btn").forEach(btn => {
+      btn.classList.remove("active");
+      btn.setAttribute("aria-selected", "false");
+    });
+    
+    targetBtn.classList.add("active");
+    targetBtn.setAttribute("aria-selected", "true");
+    
+    activeTab = tabName;
+    itemsLimit = 10;
+    renderHub();
+  }
+  
+  // Link Click Handlers
+  const pubsLinks = [document.getElementById("nav-pubs-link"), document.getElementById("footer-pubs-link")];
+  const mediaLinks = [document.getElementById("nav-media-link"), document.getElementById("footer-media-link")];
+  
+  pubsLinks.forEach(link => {
+    if (link) {
+      link.addEventListener("click", () => {
+        switchTab("scholarly_articles");
+      });
+    }
+  });
+  
+  mediaLinks.forEach(link => {
+    if (link) {
+      link.addEventListener("click", () => {
+        switchTab("interviews_media");
+      });
+    }
+  });
+
+  // Scroll spy helper to highlight active link
+  const sections = document.querySelectorAll("section, footer");
+  const navLinks = document.querySelectorAll(".nav-links a");
+  
+  function highlightNavLink() {
+    let scrollPos = window.scrollY + 200; // Offset for header height
+    
+    sections.forEach(sec => {
+      const top = sec.offsetTop;
+      const height = sec.offsetHeight;
+      const id = sec.getAttribute("id");
+      
+      if (scrollPos >= top && scrollPos < top + height) {
+        navLinks.forEach(link => {
+          link.classList.remove("active");
+          if (link.getAttribute("href") === `#${id}`) {
+            link.classList.add("active");
+          }
+        });
+      }
+    });
+  }
+});
+</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mitchell Schwarzer | Architectural & Urban Historian</title>
@@ -1069,6 +2611,26 @@ footer {
     font-size: 15px;
   }
   
+  header .container {
+    height: auto;
+    padding: 1rem 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+  }
+  
+  .header-brand {
+    margin-right: 0;
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .nav-links {
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
   .hero-grid {
     grid-template-columns: 1fr;
     gap: 4rem;
@@ -1101,6 +2663,11 @@ footer {
 @media (max-width: 768px) {
   .section {
     padding: 5rem 0;
+  }
+  
+  .nav-links {
+    gap: 1rem;
+    font-size: 0.9rem;
   }
   
   .section-title {
@@ -1142,7 +2709,6 @@ footer {
     width: 100%;
   }
 }
-
 </style>
 </head>
 <body>
@@ -1158,7 +2724,8 @@ footer {
           <li><a href="#about" class="nav-link">About</a></li>
           <li><a href="#experience" class="nav-link">Experience</a></li>
           <li><a href="#books" class="nav-link">Books</a></li>
-          <li><a href="#publications-hub" class="nav-link">Publications</a></li>
+          <li><a href="#publications-hub" class="nav-link" id="nav-pubs-link">Publications</a></li>
+          <li><a href="#publications-hub" class="nav-link" id="nav-media-link">Multi-Media Appearances</a></li>
           <li><a href="#courses" class="nav-link">Teaching</a></li>
           <li><a href="#contact" class="nav-link">Contact</a></li>
         </ul>
@@ -1291,8 +2858,7 @@ footer {
           <li><button class="tab-btn" data-tab="chapters" role="tab" aria-selected="false">Chapters</button></li>
           <li><button class="tab-btn" data-tab="essays" role="tab" aria-selected="false">Essays</button></li>
           <li><button class="tab-btn" data-tab="lectures" role="tab" aria-selected="false">Lectures</button></li>
-          <li><button class="tab-btn" data-tab="videos" role="tab" aria-selected="false">Videos</button></li>
-          <li><button class="tab-btn" data-tab="regional_activities" role="tab" aria-selected="false">Podcasts & Media</button></li>
+          <li><button class="tab-btn" data-tab="interviews_media" role="tab" aria-selected="false">Interviews & Media</button></li>
           <li><button class="tab-btn" data-tab="reviews" role="tab" aria-selected="false">Reviews</button></li>
         </ul>
         
@@ -1366,7 +2932,8 @@ footer {
             <li><a href="#about">Biography</a></li>
             <li><a href="#experience">Academic Positions</a></li>
             <li><a href="#books">Featured Books</a></li>
-            <li><a href="#publications-hub">Publications Hub</a></li>
+            <li><a href="#publications-hub" id="footer-pubs-link">Publications Hub</a></li>
+            <li><a href="#publications-hub" id="footer-media-link">Multi-Media Appearances</a></li>
           </ul>
         </div>
         <div>
@@ -1530,7 +3097,7 @@ const localCvData = {
   ],
   "books": [
     {
-      "title": "Hella Town: Oakland’s History of Development and Disruption",
+      "title": "Hella Town: Oakland\u2019s History of Development and Disruption",
       "publisher": "University of California Press",
       "year": "2021",
       "pages": "412 pp.",
@@ -1662,7 +3229,7 @@ const localCvData = {
       "url": "https://www.routledge.com/Nationalism-and-Architecture/Quek-Deane-Butler/p/book/9781138271500"
     },
     {
-      "title": "Kuth-Ranieri’s Performance of Modernism",
+      "title": "Kuth-Ranieri\u2019s Performance of Modernism",
       "book": "Kuth-Ranieri Architecture",
       "editor": "Byron Kuth & Elizabeth Ranieri",
       "publisher": "Princeton Architectural Press",
@@ -1720,7 +3287,7 @@ const localCvData = {
       "editor": "Rodolphe El-Khoury & Ed Robbins",
       "publisher": "Routledge",
       "year": "2004",
-      "details": "2013 – second edition",
+      "details": "2013 \u2013 second edition",
       "pages": "177-193",
       "url": "https://www.routledge.com/Shaping-the-City-Studies-in-History-Theory-and-Urban-Design/El-Khoury-Robbins/p/book/9780415668873"
     },
@@ -1814,7 +3381,7 @@ const localCvData = {
       "url": "https://journals.sagepub.com/doi/abs/10.1177/1538513214543971"
     },
     {
-      "title": "A Tale of Two Waterfronts: Oakland’s Jack London Square Competes with San Francisco",
+      "title": "A Tale of Two Waterfronts: Oakland\u2019s Jack London Square Competes with San Francisco",
       "journal": "California History",
       "volume": "91",
       "year": "2014",
@@ -1915,7 +3482,7 @@ const localCvData = {
       "url": "https://cca.edu"
     },
     {
-      "title": "Karl Bötticher",
+      "title": "Karl B\u00f6tticher",
       "journal": "Encyclopedia of Aesthetics",
       "volume": "4 volumes",
       "editor": "Michael Kelly",
@@ -1925,7 +3492,7 @@ const localCvData = {
       "url": "https://global.oup.com/academic/product/encyclopedia-of-aesthetics-9780199747108?cc=us&lang=en&"
     },
     {
-      "title": "Visual Historicism in the Aesthetics of Adolf Göller",
+      "title": "Visual Historicism in the Aesthetics of Adolf G\u00f6ller",
       "journal": "Art History",
       "volume": "18",
       "year": "1995",
@@ -1957,7 +3524,7 @@ const localCvData = {
       "url": "https://www.tandfonline.com/doi/abs/10.1080/10464883.1994.10734591"
     },
     {
-      "title": "Ontology and Representation in Karl Bötticher's Theory of Tectonics",
+      "title": "Ontology and Representation in Karl B\u00f6tticher's Theory of Tectonics",
       "journal": "Journal of the Society of Architectural Historians",
       "volume": "52",
       "year": "1993",
@@ -1966,7 +3533,7 @@ const localCvData = {
       "url": "https://online.ucpress.edu/jsah/article-abstract/52/3/267/56637/Ontology-and-Representation-in-Karl-Botticher-s"
     },
     {
-      "title": "Heinrich Hübsch and German Architectural Nationalism",
+      "title": "Heinrich H\u00fcbsch and German Architectural Nationalism",
       "journal": "Architronic",
       "volume": "2",
       "year": "1993",
@@ -1982,7 +3549,7 @@ const localCvData = {
       "url": "https://forum.savingplaces.org/"
     },
     {
-      "title": "Cosmopolitan Difference in Max Dvorák's Art Historiography",
+      "title": "Cosmopolitan Difference in Max Dvor\u00e1k's Art Historiography",
       "journal": "Art Bulletin",
       "volume": "74",
       "year": "1992",
@@ -2018,24 +3585,24 @@ const localCvData = {
   "essays": [
     {
       "title": "Michelangelo or Mies",
-      "publication": "MIT’s HTC: The First 50 Years",
+      "publication": "MIT\u2019s HTC: The First 50 Years",
       "year": "forthcoming",
       "url": "https://architecture.mit.edu"
     },
     {
-      "title": "Oakland’s Perils and Promises: The author of Hella Town on this city’s past and future",
+      "title": "Oakland\u2019s Perils and Promises: The author of Hella Town on this city\u2019s past and future",
       "publication": "Carnegie California (Interview by Kiran Jain)",
       "date": "April 11, 2025",
       "url": "https://carnegieendowment.org/posts/2025/04/oakland-perils-promises-hella-town?lang=en"
     },
     {
-      "title": "Pourquoi les centres-villes s’appellent-ils `Downtown’ aux Etas-Unis?",
+      "title": "Pourquoi les centres-villes s\u2019appellent-ils `Downtown\u2019 aux Etas-Unis?",
       "publication": "French Morning (by Alexis Buisson)",
       "date": "5 July 2023",
       "url": "https://frenchmorning.com/pourquoi-les-centres-villes-sappellent-ils-downtown-aux-etats-unis/"
     },
     {
-      "title": "What New York City Taught Me About Oakland’s Urban Landscape",
+      "title": "What New York City Taught Me About Oakland\u2019s Urban Landscape",
       "publication": "UC Press Blog",
       "year": "2022",
       "url": "https://www.ucpress.edu/blog/58420/what-nyc-taught-me-about-oaklands-urban-landscape/"
@@ -2048,7 +3615,7 @@ const localCvData = {
       "url": "https://www.mitpressjournals.org/loi/thld"
     },
     {
-      "title": "Privatizing the City: Oakland’s Lopsided Boom",
+      "title": "Privatizing the City: Oakland\u2019s Lopsided Boom",
       "publication": "Places 30",
       "year": "2019",
       "url": "https://placesjournal.org/article/privatizing-the-public-city/"
@@ -2086,8 +3653,8 @@ const localCvData = {
       "url": "https://onlinelibrary.wiley.com/journal/15289877"
     },
     {
-      "title": "Inside Vs. Outside: Raphael Vinoly’s Helen Diller Family Cancer Research Building at UCSF",
-      "publication": "The Architect’s Newspaper",
+      "title": "Inside Vs. Outside: Raphael Vinoly\u2019s Helen Diller Family Cancer Research Building at UCSF",
+      "publication": "The Architect\u2019s Newspaper",
       "date": "July 15, 2009",
       "pages": "10",
       "url": "https://archpaper.com/"
@@ -2107,8 +3674,8 @@ const localCvData = {
       "url": "https://www.architecturalrecord.com/"
     },
     {
-      "title": "Libeskind’s Ode to Life",
-      "publication": "The Architect’s Newspaper",
+      "title": "Libeskind\u2019s Ode to Life",
+      "publication": "The Architect\u2019s Newspaper",
       "date": "June 16, 2008",
       "pages": "7",
       "url": "https://archpaper.com/"
@@ -2121,7 +3688,7 @@ const localCvData = {
       "url": "https://arccadigest.org/architecture-patronage-part-i/"
     },
     {
-      "title": "Windows on the World: Anne Fougeron’s Houses",
+      "title": "Windows on the World: Anne Fougeron\u2019s Houses",
       "publication": "California Homes 11",
       "date": "January/February 2007",
       "pages": "76-79",
@@ -2180,7 +3747,7 @@ const localCvData = {
       "url": "https://online.ucpress.edu/ch/article-abstract/102/2/86/208579/Review-Building-the-Black-City-The"
     },
     {
-      "title": "Review of Eric Porter, A People’s History of SFO: The Making of the Bay Area and an Airport",
+      "title": "Review of Eric Porter, A People\u2019s History of SFO: The Making of the Bay Area and an Airport",
       "journal": "California History",
       "volume": "100.4",
       "year": "2023",
@@ -2227,42 +3794,44 @@ const localCvData = {
       "url": "https://eastbayyesterday.com/episodes/not-on-the-wealth-corridor/"
     },
     {
-      "title": "It was one of Oakland’s Oldest Most Important Neighborhoods: Here’s the Plan to Restore it to its Former Glory",
+      "title": "It was one of Oakland\u2019s Oldest Most Important Neighborhoods: Here\u2019s the Plan to Restore it to its Former Glory",
       "type": "Article",
       "source": "San Francisco Chronicle",
       "date": "March 30, 2025",
-      "url": "https://www.sfchronicle.com"
+      "url": "https://www.sfchronicle.com/opinion/openforum/article/san-antonio-oakland-infill-bart-station-19374026.php"
     },
     {
       "title": "Speech on the National Register Recognition of the 16th Street Train Station",
       "type": "TV Appearance",
       "source": "KGO Television News",
       "date": "March 9, 2025",
-      "url": "https://abc7news.com"
+      "url": "",
+      "url_unavailable": true
     },
     {
       "title": "Roundtable panelist, Comparative Urbanism: Learning from Jakarta",
       "type": "Panel",
       "source": "San Francisco Planning & Research (SPUR)",
       "date": "August 23, 2024",
-      "url": "https://www.spur.org"
+      "url": "",
+      "url_unavailable": true
     },
     {
       "title": "KALW interview on West Oakland history",
       "type": "Radio Interview",
       "source": "KALW",
       "date": "March 2024",
-      "url": "https://www.kalw.org"
+      "url": "https://www.kalw.org/news/2024-04-17/esthers-orbit-room-builds-on-its-history-as-a-black-cultural-hub-in-west-oakland"
     },
     {
       "title": "A History of Development and Disruption: Hella Town",
       "type": "Radio Interview",
       "source": "Making Contact Radio, KPFA",
       "date": "June 14, 2023",
-      "url": "https://kpfa.org/"
+      "url": "https://www.makingcontactradio.org/city-lines-oaklands-history-of-development-and-disruption/"
     },
     {
-      "title": "The Future Looks Bright for Children’s Fairyland",
+      "title": "The Future Looks Bright for Children\u2019s Fairyland",
       "type": "Podcast",
       "source": "Bay Curious Podcast, KQED",
       "date": "May 4, 2023",
@@ -2280,10 +3849,10 @@ const localCvData = {
       "type": "Radio Reading",
       "source": "KALW Radio",
       "date": "May 3, 2022",
-      "url": "https://www.kalw.org"
+      "url": "https://www.kalw.org/show/crosscurrents/2022-05-03/an-architectural-historians-perspective-on-oaklands-developmental-history"
     },
     {
-      "title": "How Oakland’s 16th Street Train Station Helped Build West Oakland and the Modern Civil Rights Movement",
+      "title": "How Oakland\u2019s 16th Street Train Station Helped Build West Oakland and the Modern Civil Rights Movement",
       "type": "Podcast",
       "source": "Bay Curious Podcast, KQED",
       "date": "April 14, 2022",
@@ -2294,10 +3863,10 @@ const localCvData = {
       "type": "Radio Interview",
       "source": "KQED Forum",
       "date": "November 5, 2021",
-      "url": "https://www.kqed.org/forum"
+      "url": "https://www.kqed.org/forum/20101888062/hella-town-traces-the-history-of-oakland-through-its-built-environment"
     },
     {
-      "title": "There’s No Reason to be San Francisco: the Mixed Legacy of Oakland’s Ambition",
+      "title": "There\u2019s No Reason to be San Francisco: the Mixed Legacy of Oakland\u2019s Ambition",
       "type": "Podcast",
       "source": "East Bay Yesterday Podcast (Episode 80)",
       "date": "September 17, 2021",
@@ -2376,10 +3945,11 @@ const localCvData = {
     },
     {
       "title": "Mitchell Schwarzer in Conversation: Realtors and American Housing Policy",
-      "url": "https://www.youtube.com/watch?v=kYJ_x2l5u80",
+      "url": "",
       "source": "California College of the Arts",
       "date": "Nov 5, 2021",
-      "snippet": "Discussion with Mitchell Schwarzer regarding systemic housing patterns and history."
+      "snippet": "Conversation between Hella Town author Mitchell Schwarzer and former Oakland Mayor Libby Schaaf on urban development.",
+      "url_unavailable": true
     }
   ],
   "lectures": [
@@ -2457,7 +4027,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   
   // Fetch CV data
-  cvData = localCvData;
+    cvData = localCvData;
   renderPortfolio();
     
   // Render main layout components
@@ -2628,12 +4198,53 @@ document.addEventListener("DOMContentLoaded", () => {
     } else if (activeTab === "lectures") {
       list = cvData.lectures;
       itemType = "Lecture";
-    } else if (activeTab === "videos") {
-      list = cvData.videos;
-      itemType = "Video";
-    } else if (activeTab === "regional_activities") {
-      list = cvData.regional_activities;
-      itemType = "Media/Activity";
+    } else if (activeTab === "interviews_media") {
+      // Combine videos and regional_activities
+      const videos = cvData.videos || [];
+      const regional = cvData.regional_activities || [];
+      
+      const mappedVideos = videos.map(v => ({
+        title: v.title,
+        type: "Video",
+        source: v.source,
+        date: v.date,
+        url: v.url,
+        details: v.snippet || ""
+      }));
+      
+      const mappedRegional = regional.map(r => ({
+        title: r.title,
+        type: r.type || "Media/Activity",
+        source: r.source,
+        date: r.date,
+        url: r.url,
+        details: r.details || ""
+      }));
+      
+      list = [...mappedVideos, ...mappedRegional];
+      
+      // Chronological sort helper
+      const parseItemDate = (dateStr) => {
+        if (!dateStr) return 0;
+        const d = Date.parse(dateStr);
+        if (!isNaN(d)) return d;
+        const yearMatch = dateStr.match(/\d{4}/);
+        if (yearMatch) {
+          let val = parseInt(yearMatch[0]);
+          const months = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"];
+          const lowercase = dateStr.toLowerCase();
+          for (let i = 0; i < months.length; i++) {
+            if (lowercase.includes(months[i])) {
+              return val * 12 + i;
+            }
+          }
+          return val * 12;
+        }
+        return 0;
+      };
+      
+      list.sort((a, b) => parseItemDate(b.date) - parseItemDate(a.date));
+      itemType = "Interviews & Media";
     }
     
     // Apply Search Filter
@@ -2679,14 +4290,12 @@ document.addEventListener("DOMContentLoaded", () => {
         metaText = `Review in <strong>${item.journal}</strong> (${item.year}) ${item.pages ? `, pages ${item.pages}` : ''}`;
       } else if (activeTab === "lectures") {
         metaText = `Delivered at <strong>${item.institution}</strong> • ${item.date}`;
-      } else if (activeTab === "videos") {
-        metaText = `Video via <strong>${item.source}</strong> • Published ${item.date}`;
-      } else if (activeTab === "regional_activities") {
+      } else if (activeTab === "interviews_media") {
         metaText = `<strong>${item.type}</strong> via ${item.source} • ${item.date}`;
       }
       
       const targetUrl = item.url || "#";
-      const hasUrl = item.url && item.url !== "#";
+      const hasUrl = item.url && item.url !== "#" && !item.url_unavailable;
       
       return `
         <div class="item-row">
@@ -2694,6 +4303,11 @@ document.addEventListener("DOMContentLoaded", () => {
             <div class="item-meta" style="margin-bottom: 0.5rem;">
               <span class="item-tag">${item.type || itemType}</span>
               ${item.volume ? `<span class="item-tag" style="background-color: transparent; border: 1px solid var(--border-color);">${item.volume}</span>` : ''}
+              ${!hasUrl ? `
+                <span class="item-tag" style="background-color: transparent; border: 1px dashed var(--border-color); color: var(--text-tertiary); font-size: 0.72rem; font-style: italic; font-weight: 500;">
+                  ${(item.type === "Video" || item.type === "TV Appearance" || item.type === "Radio Interview" || item.type === "Podcast" || activeTab === "interviews_media") ? "Broadcast Unavailable" : "Link Unavailable"}
+                </span>
+              ` : ''}
             </div>
             ${hasUrl ? `
               <a href="${targetUrl}" target="_blank" rel="noopener noreferrer" class="item-title-link">
@@ -2831,6 +4445,44 @@ document.addEventListener("DOMContentLoaded", () => {
     return 0; // Default fallback
   }
   
+  // Programmatic Tab Switcher
+  function switchTab(tabName) {
+    const targetBtn = hubTabs.querySelector(`[data-tab="${tabName}"]`);
+    if (!targetBtn) return;
+    
+    hubTabs.querySelectorAll(".tab-btn").forEach(btn => {
+      btn.classList.remove("active");
+      btn.setAttribute("aria-selected", "false");
+    });
+    
+    targetBtn.classList.add("active");
+    targetBtn.setAttribute("aria-selected", "true");
+    
+    activeTab = tabName;
+    itemsLimit = 10;
+    renderHub();
+  }
+  
+  // Link Click Handlers
+  const pubsLinks = [document.getElementById("nav-pubs-link"), document.getElementById("footer-pubs-link")];
+  const mediaLinks = [document.getElementById("nav-media-link"), document.getElementById("footer-media-link")];
+  
+  pubsLinks.forEach(link => {
+    if (link) {
+      link.addEventListener("click", () => {
+        switchTab("scholarly_articles");
+      });
+    }
+  });
+  
+  mediaLinks.forEach(link => {
+    if (link) {
+      link.addEventListener("click", () => {
+        switchTab("interviews_media");
+      });
+    }
+  });
+
   // Scroll spy helper to highlight active link
   const sections = document.querySelectorAll("section, footer");
   const navLinks = document.querySelectorAll(".nav-links a");
@@ -2854,7 +4506,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
-
 </script>
 </body>
 </html>
