@@ -894,12 +894,6 @@ header .container {
   font-size: 1.2rem;
 }
 
-/* Load More Container */
-.load-more-container {
-  display: flex;
-  justify-content: center;
-  margin-top: 3rem;
-}
 
 /* Courses Section */
 .courses-container {
@@ -1245,7 +1239,7 @@ footer {
                 <span class="stat-label">Published Books</span>
               </div>
               <div class="stat-box">
-                <span class="stat-num" id="years-count">35+</span>
+                <span class="stat-num" id="years-count">40+</span>
                 <span class="stat-label">Years of Scholarship</span>
               </div>
               <div class="stat-box">
@@ -1348,10 +1342,7 @@ footer {
         <!-- Dynamic loading of elements by JS -->
       </div>
       
-      <!-- Load More Button -->
-      <div class="load-more-container">
-        <button id="load-more-btn" class="btn btn-secondary" style="display: none;">Load More</button>
-      </div>
+
     </div>
   </section>
 
@@ -3933,7 +3924,6 @@ document.addEventListener("DOMContentLoaded", () => {
   let cvData = null;
   let activeTab = "scholarly_articles";
   let searchQuery = "";
-  let itemsLimit = 10;
   
   // Elements
   const educationContainer = document.getElementById("education-container");
@@ -3942,7 +3932,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const hubItemsContainer = document.getElementById("hub-items-container");
   const searchInput = document.getElementById("search-input");
   const hubTabs = document.getElementById("hub-tabs");
-  const loadMoreBtn = document.getElementById("load-more-btn");
   const coursesGrid = document.getElementById("courses-grid");
   const fellowshipsContainer = document.getElementById("fellowships-container");
   const communityContainer = document.getElementById("community-container");
@@ -4201,18 +4190,14 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
     
-    // Pagination slicing
-    const totalItems = filteredList.length;
-    const paginatedList = filteredList.slice(0, itemsLimit);
-    
     // Render list rows
+    const totalItems = filteredList.length;
     if (totalItems === 0) {
       hubItemsContainer.innerHTML = `<div class="no-results">No records found matching your query.</div>`;
-      loadMoreBtn.style.display = "none";
       return;
     }
     
-    hubItemsContainer.innerHTML = paginatedList.map(item => {
+    hubItemsContainer.innerHTML = filteredList.map(item => {
       // Build visual meta row based on fields
       let metaText = "";
       if (activeTab === "edited_works") {
@@ -4246,9 +4231,9 @@ document.addEventListener("DOMContentLoaded", () => {
             <div class="item-meta" style="margin-bottom: 0.5rem;">
               <span class="item-tag">${item.type || itemType}</span>
               ${item.volume ? `<span class="item-tag" style="background-color: transparent; border: 1px solid var(--border-color);">${item.volume}</span>` : ''}
-              ${!hasUrl ? `
+              ${!hasUrl && (item.type === "Video" || item.type === "TV Appearance" || item.type === "Radio Interview" || item.type === "Podcast" || activeTab === "media_appearances") ? `
                 <span class="item-tag" style="background-color: transparent; border: 1px dashed var(--border-color); color: var(--text-tertiary); font-size: 0.72rem; font-style: italic; font-weight: 500;">
-                  ${(item.type === "Video" || item.type === "TV Appearance" || item.type === "Radio Interview" || item.type === "Podcast" || activeTab === "media_appearances") ? "Broadcast Unavailable" : "Not Currently Available"}
+                  Broadcast Unavailable
                 </span>
               ` : ''}
             </div>
@@ -4277,13 +4262,6 @@ document.addEventListener("DOMContentLoaded", () => {
         </${hasUrl ? 'a' : 'div'}>
       `;
     }).join('');
-    
-    // Toggle Load More Button
-    if (totalItems > itemsLimit) {
-      loadMoreBtn.style.display = "inline-flex";
-    } else {
-      loadMoreBtn.style.display = "none";
-    }
   }
   
   // Tab Event Listeners
@@ -4302,7 +4280,6 @@ document.addEventListener("DOMContentLoaded", () => {
     
     // Reset limits and fetch tab content
     activeTab = targetTab.dataset.tab;
-    itemsLimit = 10;
     renderHub();
     highlightNavLink();
   });
@@ -4310,13 +4287,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // Search Box Event Listener
   searchInput.addEventListener("input", (e) => {
     searchQuery = e.target.value;
-    itemsLimit = 10; // reset pagination on search
-    renderHub();
-  });
-  
-  // Load More Handler
-  loadMoreBtn.addEventListener("click", () => {
-    itemsLimit += 10;
     renderHub();
   });
   
@@ -4403,7 +4373,6 @@ document.addEventListener("DOMContentLoaded", () => {
     targetBtn.setAttribute("aria-selected", "true");
     
     activeTab = tabName;
-    itemsLimit = 10;
     renderHub();
     highlightNavLink();
   }
