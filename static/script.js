@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let cvData = null;
   let activeTab = "scholarly_articles";
   let searchQuery = "";
-  let itemsLimit = 10;
+  let mediaSearchQuery = "";
   
   // Elements
   const educationContainer = document.getElementById("education-container");
@@ -13,7 +13,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const hubItemsContainer = document.getElementById("hub-items-container");
   const searchInput = document.getElementById("search-input");
   const hubTabs = document.getElementById("hub-tabs");
-  const loadMoreBtn = document.getElementById("load-more-btn");
+  const mediaItemsContainer = document.getElementById("media-items-container");
+  const mediaSearchInput = document.getElementById("media-search-input");
   const coursesGrid = document.getElementById("courses-grid");
   const fellowshipsContainer = document.getElementById("fellowships-container");
   const communityContainer = document.getElementById("community-container");
@@ -76,6 +77,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // Render Publications Hub (initial view)
     renderHub();
     
+    // Render Media Hub
+    renderMediaHub();
+    
     // Render Courses
     renderCourses(cvData.courses);
     
@@ -93,15 +97,18 @@ document.addEventListener("DOMContentLoaded", () => {
   function renderHeroProfiles(links) {
     const container = document.getElementById("hero-profiles-container");
     if (!container || !links) return;
-    container.innerHTML = links.map(link => `
-      <a href="${link.url}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="font-size: 0.85rem; padding: 0.5rem 1rem; display: inline-flex; align-items: center; gap: 0.5rem; border: 1px solid var(--border-color); background-color: var(--bg-secondary); color: var(--text-primary); border-radius: var(--border-radius-sm); font-weight: 500; transition: var(--transition);">
-        ${link.name}
-        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="7" y1="17" x2="17" y2="7"></line>
-          <polyline points="7 7 17 7 17 17"></polyline>
-        </svg>
-      </a>
-    `).join('');
+    container.innerHTML = links.map(link => {
+      const targetUrl = link.name === "Wikipedia Biography" ? link.url : `static/mock_viewer.html?title=${encodeURIComponent(link.name)}&source=Mitchell%20Schwarzer%20Profile%20Resources&year=2026&type=External%20Profile&url=${encodeURIComponent(link.url)}`;
+      return `
+        <a href="${targetUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="font-size: 0.85rem; padding: 0.5rem 1rem; display: inline-flex; align-items: center; gap: 0.5rem; border: 1px solid var(--border-color); background-color: var(--bg-secondary); color: var(--text-primary); border-radius: var(--border-radius-sm); font-weight: 500; transition: var(--transition);">
+          ${link.name}
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="7" y1="17" x2="17" y2="7"></line>
+            <polyline points="7 7 17 7 17 17"></polyline>
+          </svg>
+        </a>
+      `;
+    }).join('');
   }
   
   // Education Rendering
@@ -191,7 +198,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <h3 class="book-title">${book.title}</h3>
             <p class="book-desc">${book.description || ""}</p>
             ${book.url ? `
-              <a href="${book.url}" target="_blank" rel="noopener noreferrer" class="book-link" aria-label="Purchase or view ${book.title}">
+              <a href="static/mock_viewer.html?title=${encodeURIComponent(book.title)}&source=${encodeURIComponent(book.publisher)}&year=${encodeURIComponent(book.year)}&type=Book&url=${encodeURIComponent(book.url)}" target="_blank" rel="noopener noreferrer" class="book-link" aria-label="Purchase or view ${book.title}">
                 Publisher Details 
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                   <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -213,7 +220,10 @@ document.addEventListener("DOMContentLoaded", () => {
     let list = [];
     let itemType = "";
     
-    if (activeTab === "scholarly_articles") {
+    if (activeTab === "edited_works") {
+      list = cvData.edited_works || [];
+      itemType = "Edited Work";
+    } else if (activeTab === "scholarly_articles") {
       list = cvData.scholarly_articles;
       itemType = "Scholarly Article";
     } else if (activeTab === "chapters") {
@@ -228,53 +238,6 @@ document.addEventListener("DOMContentLoaded", () => {
     } else if (activeTab === "lectures") {
       list = cvData.lectures;
       itemType = "Lecture";
-    } else if (activeTab === "interviews_media") {
-      // Combine videos and regional_activities
-      const videos = cvData.videos || [];
-      const regional = cvData.regional_activities || [];
-      
-      const mappedVideos = videos.map(v => ({
-        title: v.title,
-        type: "Video",
-        source: v.source,
-        date: v.date,
-        url: v.url,
-        details: v.snippet || ""
-      }));
-      
-      const mappedRegional = regional.map(r => ({
-        title: r.title,
-        type: r.type || "Media/Activity",
-        source: r.source,
-        date: r.date,
-        url: r.url,
-        details: r.details || ""
-      }));
-      
-      list = [...mappedVideos, ...mappedRegional];
-      
-      // Chronological sort helper
-      const parseItemDate = (dateStr) => {
-        if (!dateStr) return 0;
-        const d = Date.parse(dateStr);
-        if (!isNaN(d)) return d;
-        const yearMatch = dateStr.match(/\d{4}/);
-        if (yearMatch) {
-          let val = parseInt(yearMatch[0]);
-          const months = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"];
-          const lowercase = dateStr.toLowerCase();
-          for (let i = 0; i < months.length; i++) {
-            if (lowercase.includes(months[i])) {
-              return val * 12 + i;
-            }
-          }
-          return val * 12;
-        }
-        return 0;
-      };
-      
-      list.sort((a, b) => parseItemDate(b.date) - parseItemDate(a.date));
-      itemType = "Interviews & Media";
     }
     
     // Apply Search Filter
@@ -291,26 +254,32 @@ document.addEventListener("DOMContentLoaded", () => {
         const typeMatch = (item.type || "").toLowerCase().includes(query);
         const institutionMatch = (item.institution || "").toLowerCase().includes(query);
         const snippetMatch = (item.snippet || "").toLowerCase().includes(query);
+        const publisherMatch = (item.publisher || "").toLowerCase().includes(query);
+        const editorMatch = (item.editor || "").toLowerCase().includes(query);
         
-        return titleMatch || journalMatch || bookMatch || pubMatch || detailsMatch || sourceMatch || typeMatch || institutionMatch || snippetMatch;
+        return titleMatch || journalMatch || bookMatch || pubMatch || detailsMatch || sourceMatch || typeMatch || institutionMatch || snippetMatch || publisherMatch || editorMatch;
       });
     }
     
-    // Pagination slicing
-    const totalItems = filteredList.length;
-    const paginatedList = filteredList.slice(0, itemsLimit);
-    
     // Render list rows
+    const totalItems = filteredList.length;
     if (totalItems === 0) {
       hubItemsContainer.innerHTML = `<div class="no-results">No records found matching your query.</div>`;
-      loadMoreBtn.style.display = "none";
       return;
     }
     
-    hubItemsContainer.innerHTML = paginatedList.map(item => {
+    hubItemsContainer.innerHTML = filteredList.map(item => {
       // Build visual meta row based on fields
       let metaText = "";
-      if (activeTab === "scholarly_articles") {
+      if (activeTab === "edited_works") {
+        if (item.title.includes("Map and Guide")) {
+          metaText = `${item.pages ? `${item.pages}, ` : ''}(${item.publisher}, ${item.year}).`;
+        } else if (item.title.includes("Jeremy Blake")) {
+          metaText = `ed. ${item.editor} (${item.publisher}, ${item.year}):`;
+        } else {
+          metaText = `(${item.year}):`;
+        }
+      } else if (activeTab === "scholarly_articles") {
         metaText = `Published in <strong>${item.journal}</strong> (${item.year}) ${item.pages ? `, pages ${item.pages}` : ''}`;
       } else if (activeTab === "chapters") {
         metaText = `Chapter in <em>${item.book}</em>, ed. ${item.editor || ""} • ${item.publisher} (${item.year})`;
@@ -320,33 +289,26 @@ document.addEventListener("DOMContentLoaded", () => {
         metaText = `Review in <strong>${item.journal}</strong> (${item.year}) ${item.pages ? `, pages ${item.pages}` : ''}`;
       } else if (activeTab === "lectures") {
         metaText = `Delivered at <strong>${item.institution}</strong> • ${item.date}`;
-      } else if (activeTab === "interviews_media") {
-        metaText = `<strong>${item.type}</strong> via ${item.source} • ${item.date}`;
       }
       
-      const targetUrl = item.url || "#";
       const hasUrl = item.url && item.url !== "#" && !item.url_unavailable;
+      const targetUrl = hasUrl ? `static/mock_viewer.html?title=${encodeURIComponent(item.title)}&source=${encodeURIComponent(item.journal || item.book || item.publication || item.source || "External Link")}&year=${encodeURIComponent(item.year || item.date || "")}&type=${encodeURIComponent(activeTab === "scholarly_articles" ? "Scholarly Article" : activeTab === "chapters" ? "Chapter" : activeTab === "essays" ? "Essay" : activeTab === "reviews" ? "Review" : "Publication")}&url=${encodeURIComponent(item.url)}` : "#";
       
       return `
-        <div class="item-row">
+        <${hasUrl ? `a href="${targetUrl}" target="_blank" rel="noopener noreferrer"` : 'div'} class="item-row ${hasUrl ? 'clickable' : ''}">
           <div class="item-main">
             <div class="item-meta" style="margin-bottom: 0.5rem;">
               <span class="item-tag">${item.type || itemType}</span>
               ${item.volume ? `<span class="item-tag" style="background-color: transparent; border: 1px solid var(--border-color);">${item.volume}</span>` : ''}
-              ${!hasUrl ? `
-                <span class="item-tag" style="background-color: transparent; border: 1px dashed var(--border-color); color: var(--text-tertiary); font-size: 0.72rem; font-style: italic; font-weight: 500;">
-                  ${(item.type === "Video" || item.type === "TV Appearance" || item.type === "Radio Interview" || item.type === "Podcast" || activeTab === "interviews_media") ? "Broadcast Unavailable" : "Link Unavailable"}
-                </span>
-              ` : ''}
             </div>
             ${hasUrl ? `
-              <a href="${targetUrl}" target="_blank" rel="noopener noreferrer" class="item-title-link">
+              <h3 class="item-title-link">
                 ${item.title}
                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 2px; flex-shrink:0;">
                   <line x1="7" y1="17" x2="17" y2="7"></line>
                   <polyline points="7 7 17 7 17 17"></polyline>
                 </svg>
-              </a>
+              </h3>
             ` : `
               <h3 class="item-title-link" style="color: var(--text-primary); cursor: default; hover: none;">${item.title}</h3>
             `}
@@ -354,23 +316,102 @@ document.addEventListener("DOMContentLoaded", () => {
             ${item.details ? `<p class="item-meta" style="font-style: italic; margin-top: 0.25rem;">${item.details}</p>` : ''}
           </div>
           ${hasUrl ? `
-            <a href="${targetUrl}" target="_blank" rel="noopener noreferrer" class="item-link-btn" aria-label="Read external link: ${item.title}">
+            <div class="item-link-btn" aria-label="Read external link: ${item.title}">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <line x1="5" y1="12" x2="19" y2="12"></line>
                 <polyline points="12 5 19 12 12 19"></polyline>
               </svg>
-            </a>
+            </div>
           ` : ''}
-        </div>
+        </${hasUrl ? 'a' : 'div'}>
       `;
     }).join('');
+  }
+
+  // Dynamic Media Hub rendering
+  function renderMediaHub() {
+    if (!cvData || !cvData.media_appearances) return;
     
-    // Toggle Load More Button
-    if (totalItems > itemsLimit) {
-      loadMoreBtn.style.display = "inline-flex";
-    } else {
-      loadMoreBtn.style.display = "none";
+    let list = [...cvData.media_appearances];
+    
+    // Chronological sort helper
+    const parseItemDate = (dateStr) => {
+      if (!dateStr) return 0;
+      const d = Date.parse(dateStr);
+      if (!isNaN(d)) return d;
+      const yearMatch = dateStr.match(/\d{4}/);
+      if (yearMatch) {
+        let val = parseInt(yearMatch[0]);
+        const months = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"];
+        const lowercase = dateStr.toLowerCase();
+        for (let i = 0; i < months.length; i++) {
+          if (lowercase.includes(months[i])) {
+            return val * 12 + i;
+          }
+        }
+        return val * 12;
+      }
+      return 0;
+    };
+    
+    list.sort((a, b) => parseItemDate(b.date) - parseItemDate(a.date));
+    
+    // Apply Search Filter
+    let filteredList = list;
+    if (mediaSearchQuery.trim() !== "") {
+      const query = mediaSearchQuery.toLowerCase();
+      filteredList = list.filter(item => {
+        const titleMatch = (item.title || "").toLowerCase().includes(query);
+        const sourceMatch = (item.source || "").toLowerCase().includes(query);
+        const typeMatch = (item.type || "").toLowerCase().includes(query);
+        const dateMatch = (item.date || "").toLowerCase().includes(query);
+        const detailsMatch = (item.details || "").toLowerCase().includes(query);
+        
+        return titleMatch || sourceMatch || typeMatch || dateMatch || detailsMatch;
+      });
     }
+    
+    if (filteredList.length === 0) {
+      mediaItemsContainer.innerHTML = `<div class="no-results">No media records found matching your query.</div>`;
+      return;
+    }
+    
+    mediaItemsContainer.innerHTML = filteredList.map(item => {
+      const metaText = `<strong>${item.type}</strong> via ${item.source} • ${item.date}`;
+      const hasUrl = item.url && item.url !== "#" && !item.url_unavailable;
+      const targetUrl = hasUrl ? `static/mock_viewer.html?title=${encodeURIComponent(item.title)}&source=${encodeURIComponent(item.source || "External Link")}&year=${encodeURIComponent(item.date || "")}&type=${encodeURIComponent("Media")}&url=${encodeURIComponent(item.url)}` : "#";
+      
+      return `
+        <${hasUrl ? `a href="${targetUrl}" target="_blank" rel="noopener noreferrer"` : 'div'} class="item-row ${hasUrl ? 'clickable' : ''}">
+          <div class="item-main">
+            <div class="item-meta" style="margin-bottom: 0.5rem;">
+              <span class="item-tag">${item.type || "Media"}</span>
+            </div>
+            ${hasUrl ? `
+              <h3 class="item-title-link">
+                ${item.title}
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 2px; flex-shrink:0;">
+                  <line x1="7" y1="17" x2="17" y2="7"></line>
+                  <polyline points="7 7 17 7 17 17"></polyline>
+                </svg>
+              </h3>
+            ` : `
+              <h3 class="item-title-link" style="color: var(--text-primary); cursor: default; hover: none;">${item.title}</h3>
+            `}
+            <p class="item-meta" style="margin-top: 0.25rem;">${metaText}</p>
+            ${item.details ? `<p class="item-meta" style="font-style: italic; margin-top: 0.25rem;">${item.details}</p>` : ''}
+          </div>
+          ${hasUrl ? `
+            <div class="item-link-btn" aria-label="Read external link: ${item.title}">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </div>
+          ` : ''}
+        </${hasUrl ? 'a' : 'div'}>
+      `;
+    }).join('');
   }
   
   // Tab Event Listeners
@@ -389,22 +430,22 @@ document.addEventListener("DOMContentLoaded", () => {
     
     // Reset limits and fetch tab content
     activeTab = targetTab.dataset.tab;
-    itemsLimit = 10;
     renderHub();
+    highlightNavLink();
   });
   
   // Search Box Event Listener
   searchInput.addEventListener("input", (e) => {
     searchQuery = e.target.value;
-    itemsLimit = 10; // reset pagination on search
     renderHub();
   });
   
-  // Load More Handler
-  loadMoreBtn.addEventListener("click", () => {
-    itemsLimit += 10;
-    renderHub();
-  });
+  if (mediaSearchInput) {
+    mediaSearchInput.addEventListener("input", (e) => {
+      mediaSearchQuery = e.target.value;
+      renderMediaHub();
+    });
+  }
   
   // Render Courses
   function renderCourses(courses) {
@@ -489,13 +530,11 @@ document.addEventListener("DOMContentLoaded", () => {
     targetBtn.setAttribute("aria-selected", "true");
     
     activeTab = tabName;
-    itemsLimit = 10;
     renderHub();
+    highlightNavLink();
   }
   
-  // Link Click Handlers
   const pubsLinks = [document.getElementById("nav-pubs-link"), document.getElementById("footer-pubs-link")];
-  const mediaLinks = [document.getElementById("nav-media-link"), document.getElementById("footer-media-link")];
   
   pubsLinks.forEach(link => {
     if (link) {
@@ -504,14 +543,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
   });
-  
-  mediaLinks.forEach(link => {
-    if (link) {
-      link.addEventListener("click", () => {
-        switchTab("interviews_media");
-      });
-    }
-  });
+
 
   // Scroll spy helper to highlight active link
   const sections = document.querySelectorAll("section, footer");
@@ -529,7 +561,13 @@ document.addEventListener("DOMContentLoaded", () => {
         navLinks.forEach(link => {
           link.classList.remove("active");
           if (link.getAttribute("href") === `#${id}`) {
-            link.classList.add("active");
+            if (id === "publications-hub") {
+              if (link.id === "nav-pubs-link") {
+                link.classList.add("active");
+              }
+            } else {
+              link.classList.add("active");
+            }
           }
         });
       }

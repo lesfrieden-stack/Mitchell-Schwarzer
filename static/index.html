@@ -1,12 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script src="/static/script.js?v=1.3"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mitchell Schwarzer | Architectural & Urban Historian</title>
   <meta name="description" content="Official portfolio website of Mitchell Schwarzer, Professor Emeritus of Architectural and Urban History at the California College of the Arts (CCA) and author of Hella Town.">
-  
+  <link rel="canonical" href="https://mitchell-schwarzer.vercel.app/">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="profile">
+  <meta property="og:url" content="https://mitchell-schwarzer.vercel.app/">
+  <meta property="og:title" content="Mitchell Schwarzer | Architectural & Urban Historian">
+  <meta property="og:description" content="Official portfolio website of Mitchell Schwarzer, Professor Emeritus of Architectural and Urban History at the California College of the Arts (CCA) and author of Hella Town.">
+  <meta property="og:image" content="https://mitchell-schwarzer.vercel.app/static/mitchell_yosemite.jpg">
+  <meta property="og:profile:first_name" content="Mitchell">
+  <meta property="og:profile:last_name" content="Schwarzer">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://mitchell-schwarzer.vercel.app/">
+  <meta name="twitter:title" content="Mitchell Schwarzer | Architectural & Urban Historian">
+  <meta name="twitter:description" content="Official portfolio website of Mitchell Schwarzer, Professor Emeritus of Architectural and Urban History at the California College of the Arts (CCA) and author of Hella Town.">
+  <meta name="twitter:image" content="https://mitchell-schwarzer.vercel.app/static/mitchell_yosemite.jpg">
+
+  <!-- Schema.org JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    "mainEntity": {
+      "@type": "Person",
+      "name": "Mitchell Schwarzer",
+      "jobTitle": "Professor Emeritus of Art, Architecture, and Urban History",
+      "worksFor": {
+        "@type": "CollegeOrUniversity",
+        "name": "California College of the Arts",
+        "sameAs": "https://en.wikipedia.org/wiki/California_College_of_the_Arts"
+      },
+      "description": "Mitchell Schwarzer is a prominent American historian, author, and Professor Emeritus at the California College of the Arts (CCA). His research and teaching interests focus on architecture, urbanism, landscape, infrastructure, and art history.",
+      "image": "https://mitchell-schwarzer.vercel.app/static/mitchell_yosemite.jpg",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Oakland",
+        "addressRegion": "CA",
+        "postalCode": "94610",
+        "addressCountry": "US"
+      },
+      "email": "Mitchell.Schwarzer@gmail.com",
+      "alumniOf": [
+        {
+          "@type": "CollegeOrUniversity",
+          "name": "Massachusetts Institute of Technology",
+          "sameAs": "https://en.wikipedia.org/wiki/Massachusetts_Institute_of_Technology"
+        },
+        {
+          "@type": "CollegeOrUniversity",
+          "name": "Harvard University",
+          "sameAs": "https://en.wikipedia.org/wiki/Harvard_University"
+        },
+        {
+          "@type": "CollegeOrUniversity",
+          "name": "Washington University in St. Louis",
+          "sameAs": "https://en.wikipedia.org/wiki/Washington_University_in_St._Louis"
+        }
+      ],
+      "sameAs": [
+        "https://en.wikipedia.org/wiki/Mitchell_Schwarzer",
+        "https://portal.cca.edu/people/mschwarzer/",
+        "https://www.linkedin.com/in/mitchell-schwarzer-42b83019/",
+        "https://www.amazon.com/stores/Mitchell-Schwarzer/author/B001JS25B4",
+        "https://www.ucpress.edu/books/hella-town/paper"
+      ],
+      "knowsAbout": [
+        "Architectural History",
+        "Urban History",
+        "City Planning",
+        "San Francisco Bay Area History",
+        "Oakland History"
+      ],
+      "publishingPrinciples": [
+        {
+          "@type": "Book",
+          "name": "Hella Town: Oakland's History of Development and Disruption",
+          "datePublished": "2021",
+          "publisher": "University of California Press"
+        },
+        {
+          "@type": "Book",
+          "name": "Zoomscape: Architecture in Motion and Media",
+          "datePublished": "2004",
+          "publisher": "Princeton Architectural Press"
+        },
+        {
+          "@type": "Book",
+          "name": "German Architectural Theory and the Search for Modern Identity",
+          "datePublished": "1995",
+          "publisher": "Cambridge University Press"
+        }
+      ]
+    }
+  }
+  </script>
+
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,11 +120,11 @@
       </a>
       <nav aria-label="Main Navigation">
         <ul class="nav-links">
-          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#hero" class="nav-link">About</a></li>
           <li><a href="#experience" class="nav-link">Experience</a></li>
           <li><a href="#books" class="nav-link">Books</a></li>
           <li><a href="#publications-hub" class="nav-link" id="nav-pubs-link">Publications</a></li>
-          <li><a href="#publications-hub" class="nav-link" id="nav-media-link">Multi-Media Appearances</a></li>
+          <li><a href="#media-hub" class="nav-link" id="nav-media-link">Media</a></li>
           <li><a href="#courses" class="nav-link">Teaching</a></li>
           <li><a href="#contact" class="nav-link">Contact</a></li>
         </ul>
@@ -60,7 +155,7 @@
           <h1 class="hero-title" id="author-name">Mitchell Schwarzer</h1>
           <p class="hero-subtitle">Architectural & Urban Historian</p>
           <p class="hero-text">
-            Specializing in the built environment, urban history, and architectural theory, exploring how regional competition, media, and infrastructure shape our spatial consciousness. Author of <strong>Hella Town</strong>.
+            Specializing in the history of architecture, cities, infrastructure and the built environment, exploring how written and visual discourses impact historical understanding, aesthetic appreciation, and our sense of place.
           </p>
           <div class="hero-buttons">
             <a href="#books" class="btn btn-primary">Featured Books</a>
@@ -88,11 +183,11 @@
                 <span class="stat-label">Published Books</span>
               </div>
               <div class="stat-box">
-                <span class="stat-num" id="years-count">35+</span>
+                <span class="stat-num" id="years-count">45+</span>
                 <span class="stat-label">Years of Scholarship</span>
               </div>
               <div class="stat-box">
-                <span class="stat-num" id="articles-count">80+</span>
+                <span class="stat-num" id="articles-count">125+</span>
                 <span class="stat-label">Articles & Essays</span>
               </div>
             </div>
@@ -112,13 +207,19 @@
       <div class="about-grid">
         <div class="about-text">
           <div class="about-image" style="margin-bottom: 1.5rem;">
-            <img src="/static/mitchell_yosemite.jpg" alt="Mitchell Schwarzer" style="width: 100%; max-width: 400px; height: auto; border-radius: var(--border-radius-md); box-shadow: var(--shadow-md); object-fit: cover;">
+            <img src="static/mitchell_yosemite.jpg" alt="Mitchell Schwarzer" style="width: 100%; max-width: 400px; height: auto; border-radius: var(--border-radius-md); box-shadow: var(--shadow-md); object-fit: cover;">
           </div>
           <p id="bio-paragraph">
-             Mitchell Schwarzer is a scholar, author, and educator whose research addresses the intersection of architectural design, city planning, infrastructure, and visual media. Over his distinguished career, he has documented and critiqued the evolving landscapes of the American West, with a strong focus on the San Francisco Bay Area.
+            Mitchell Schwarzer is a scholar, author, and educator whose research addresses the history of architectural design, city planning, infrastructure and the built environment.
           </p>
           <p>
-            As a city planner in the 1980s, he authored historic preservation elements of San Francisco's master plan andDowntown preservation statutes, providing him with direct, hands-on insight into urban development dynamics before transitioning to academia in the 1990s.
+            As a city planner in the 1980s, he contributed to San Francisco’s Downtown Plan, its Historic Preservation Element of the Master Plan and many other neighborhood plans, providing him with direct, hands-on insight into urban development dynamics.  Schwarzer transitioned to academia in the late 1980s.
+          </p>
+          <p>
+            Over his distinguished scholarly career, he has investigated the role of theory and philosophy as well as technologies of motion and media on those histories.  In his first book German Architectural Theory and numerous articles, he examined written discourses on architecture, art history and aesthetics that grappled with the onset of industrial modernity in Central Europe.  In his second book, Zoomscape, he explored how new transportation and media technologies – railroads, automobiles, airplanes, photographs, films, TV – reoriented our perception and awareness of the built environment.  His university-level teaching came to encompass the wide horizons of the visual and fine arts, an exposure that contributed to his increasing role as a public intellectual.
+          </p>
+          <p>
+            Around the turn of the millennium, Schwarzer published two historical guidebooks to the architecture of San Francisco and the Bay Area, and contributed frequent criticism on new buildings in California in the mainstream media.  During the 2010s and beyond, he analyzed the history and theory of infrastructure and, building upon earlier work, dove into the history of Oakland, resulting in the book Hella Town.  He has continued writing on regional Bay Area history and contributed op-eds, interviews, podcasts, lectures and discussions to a wide array of public audiences.
           </p>
         </div>
         <div>
@@ -156,16 +257,16 @@
   <!-- Interactive Publications & Media Hub -->
   <section id="publications-hub" class="section">
     <div class="container">
-      <h2 class="section-title">Publications & Media Hub</h2>
+      <h2 class="section-title">Publications</h2>
       
       <!-- Filter Controls -->
       <div class="hub-controls">
         <ul class="tabs-list" id="hub-tabs" role="tablist">
+          <li><button class="tab-btn" data-tab="edited_works" role="tab" aria-selected="false">Edited Works</button></li>
           <li><button class="tab-btn active" data-tab="scholarly_articles" role="tab" aria-selected="true">Articles</button></li>
           <li><button class="tab-btn" data-tab="chapters" role="tab" aria-selected="false">Chapters</button></li>
           <li><button class="tab-btn" data-tab="essays" role="tab" aria-selected="false">Essays</button></li>
           <li><button class="tab-btn" data-tab="lectures" role="tab" aria-selected="false">Lectures</button></li>
-          <li><button class="tab-btn" data-tab="interviews_media" role="tab" aria-selected="false">Interviews & Media</button></li>
           <li><button class="tab-btn" data-tab="reviews" role="tab" aria-selected="false">Reviews</button></li>
         </ul>
         
@@ -184,10 +285,34 @@
         <!-- Dynamic loading of elements by JS -->
       </div>
       
-      <!-- Load More Button -->
-      <div class="load-more-container">
-        <button id="load-more-btn" class="btn btn-secondary" style="display: none;">Load More</button>
+
+    </div>
+  </section>
+
+  <!-- Media Hub -->
+  <section id="media-hub" class="section">
+    <div class="container">
+      <h2 class="section-title">Media</h2>
+      
+      <!-- Controls -->
+      <div class="hub-controls">
+        <div style="flex-grow: 1;"></div>
+        
+        <!-- Search bar -->
+        <div class="search-box">
+          <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" id="media-search-input" class="search-input" placeholder="Search by title, type, source...">
+        </div>
       </div>
+
+      <!-- Hub Content List -->
+      <div class="hub-grid" id="media-items-container">
+        <!-- Dynamic loading of elements by JS -->
+      </div>
+      
     </div>
   </section>
 
@@ -236,11 +361,11 @@
         <div>
           <h4 class="footer-title">Navigation</h4>
           <ul class="footer-links">
-            <li><a href="#about">Biography</a></li>
+            <li><a href="#hero">Biography</a></li>
             <li><a href="#experience">Academic Positions</a></li>
             <li><a href="#books">Featured Books</a></li>
             <li><a href="#publications-hub" id="footer-pubs-link">Publications Hub</a></li>
-            <li><a href="#publications-hub" id="footer-media-link">Multi-Media Appearances</a></li>
+            <li><a href="#media-hub" id="footer-media-link">Media</a></li>
           </ul>
         </div>
         <div>
@@ -262,6 +387,6 @@
   </footer>
 
   <!-- Script tags -->
-  <script src="/static/script.js?v=1.3"></script>
+  <script src="/static/script.js?v=1.5"></script>
 </body>
 </html>

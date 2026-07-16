@@ -799,7 +799,13 @@ header .container {
   transition: var(--transition);
 }
 
-.item-row:hover {
+.item-row.clickable {
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+}
+
+.item-row.clickable:hover {
   border-color: var(--accent-color);
   transform: translateX(4px);
   box-shadow: var(--shadow-sm);
@@ -819,9 +825,10 @@ header .container {
   align-items: center;
   gap: 0.5rem;
   line-height: 1.35;
+  transition: color var(--transition);
 }
 
-.item-title-link:hover {
+.item-row.clickable:hover .item-title-link {
   color: var(--accent-color);
 }
 
@@ -857,7 +864,7 @@ header .container {
   flex-shrink: 0;
 }
 
-.item-row:hover .item-link-btn {
+.item-row.clickable:hover .item-link-btn {
   background-color: var(--accent-color);
   border-color: var(--accent-color);
   color: #ffffff;
@@ -872,12 +879,6 @@ header .container {
   font-size: 1.2rem;
 }
 
-/* Load More Container */
-.load-more-container {
-  display: flex;
-  justify-content: center;
-  margin-top: 3rem;
-}
 
 /* Courses Section */
 .courses-container {

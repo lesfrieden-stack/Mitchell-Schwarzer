@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Offline Preview | Mitchell Schwarzer</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-primary: #faf6f0;
+      --bg-secondary: #f4ede4;
+      --bg-tertiary: #ebe3d5;
+      --text-primary: #2c2a29;
+      --text-secondary: #605d5a;
+      --text-tertiary: #8f8a85;
+      --accent-color: #8a7b6e;
+      --accent-light: #bcaaa4;
+      --border-color: #e3dac9;
+      --shadow-sm: 0 4px 20px rgba(138, 123, 110, 0.08);
+      --font-sans: 'Outfit', sans-serif;
+      --font-serif: 'Lora', Georgia, serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+
+    header {
+      border-bottom: 1px solid var(--border-color);
+      padding: 1.5rem 0;
+      margin-bottom: 3rem;
+    }
+
+    .header-logo {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: var(--text-primary);
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .header-logo span {
+      color: var(--accent-color);
+      font-weight: 300;
+    }
+
+    main {
+      flex-grow: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .preview-card {
+      background-color: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 3rem;
+      box-shadow: var(--shadow-sm);
+      width: 100%;
+      animation: fadeIn 0.6s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .item-tag {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      background-color: var(--bg-tertiary);
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.05em;
+    }
+
+    .item-title {
+      font-family: var(--font-serif);
+      font-size: 2.2rem;
+      font-weight: 600;
+      line-height: 1.25;
+      color: var(--text-primary);
+      margin-bottom: 1.5rem;
+    }
+
+    .item-meta {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .info-banner {
+      background-color: #f7eedb;
+      border-left: 4px solid #d4a373;
+      padding: 1.25rem 1.5rem;
+      border-radius: 4px;
+      margin-bottom: 2rem;
+      color: #725227;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+
+    .info-banner svg {
+      flex-shrink: 0;
+      margin-top: 0.15rem;
+    }
+
+    .original-url-box {
+      background-color: var(--bg-tertiary);
+      padding: 1rem;
+      border-radius: 6px;
+      font-family: monospace;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      word-break: break-all;
+      margin-bottom: 2.5rem;
+      border: 1px solid var(--border-color);
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.75rem 1.5rem;
+      font-size: 0.95rem;
+      font-weight: 500;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background-color: var(--accent-color);
+      color: #ffffff;
+      border: 1px solid var(--accent-color);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--text-primary);
+      border-color: var(--text-primary);
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      color: var(--text-primary);
+      border: 1px solid var(--border-color);
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--bg-tertiary);
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 0;
+      font-size: 0.85rem;
+      color: var(--text-tertiary);
+      border-top: 1px solid var(--border-color);
+      margin-top: 3rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container" style="padding: 0 1.5rem; margin-bottom: 0;">
+      <a href="../" class="header-logo">
+        Mitchell <span>Schwarzer</span>
+      </a>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="preview-card">
+      <div id="item-tag" class="item-tag">Scholarly Article</div>
+      <h1 id="item-title" class="item-title">Publication Title</h1>
+      <div id="item-meta" class="item-meta">Published in Journal (Year)</div>
+      
+      <div class="info-banner">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" y1="16" x2="12" y2="12"></line>
+          <line x1="12" y1="8" x2="12.01" y2="8"></line>
+        </svg>
+        <div>
+          <strong>Offline Preview Mode:</strong> You are viewing this document preview offline because the test environment does not have external internet connectivity to load the publisher's live website.
+        </div>
+      </div>
+      
+      <p style="margin-bottom: 0.75rem; font-weight: 500; font-size: 0.9rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em;">Intended Destination URL:</p>
+      <div id="original-url" class="original-url-box">https://example.com</div>
+      
+      <div class="btn-group">
+        <button onclick="window.close()" class="btn btn-primary">Close Preview</button>
+        <a href="../" class="btn btn-secondary">Return to Portfolio</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container" style="padding: 0 1.5rem; margin-top: 0;">
+      &copy; 2026 Mitchell Schwarzer. Offline Archive System.
+    </div>
+  </footer>
+
+  <script>
+    // Parse query parameters
+    const params = new URLSearchParams(window.location.search);
+    
+    const title = params.get('title') || 'Untitled Publication';
+    const source = params.get('source') || 'Unknown Publisher';
+    const year = params.get('year') || 'n.d.';
+    const type = params.get('type') || 'Publication';
+    const url = params.get('url') || '#';
+
+    // Update DOM
+    document.getElementById('item-title').textContent = title;
+    document.getElementById('item-tag').textContent = type;
+    document.getElementById('original-url').textContent = url;
+
+    // Build meta string
+    let metaString = '';
+    if (type.toLowerCase() === 'book') {
+      metaString = `Published by <strong>${source}</strong> (${year})`;
+    } else if (type.toLowerCase() === 'scholarly article' || type.toLowerCase() === 'scholarly_articles') {
+      metaString = `Scholarly Article published in <strong>${source}</strong> (${year})`;
+      document.getElementById('item-tag').textContent = 'Scholarly Article';
+    } else if (type.toLowerCase() === 'chapter') {
+      metaString = `Book Chapter in <strong>${source}</strong> (${year})`;
+    } else if (type.toLowerCase() === 'essay' || type.toLowerCase() === 'essays') {
+      metaString = `Essay published in <strong>${source}</strong> (${year})`;
+      document.getElementById('item-tag').textContent = 'Essay';
+    } else if (type.toLowerCase() === 'review' || type.toLowerCase() === 'reviews') {
+      metaString = `Review published in <strong>${source}</strong> (${year})`;
+      document.getElementById('item-tag').textContent = 'Review';
+    } else {
+      metaString = `${source} (${year})`;
+    }
+    document.getElementById('item-meta').innerHTML = metaString;
+  </script>
+</body>
+</html>
