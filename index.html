@@ -1176,11 +1176,10 @@ footer {
       </a>
       <nav aria-label="Main Navigation">
         <ul class="nav-links">
-          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#hero" class="nav-link">About</a></li>
           <li><a href="#experience" class="nav-link">Experience</a></li>
           <li><a href="#books" class="nav-link">Books</a></li>
           <li><a href="#publications-hub" class="nav-link" id="nav-pubs-link">Publications</a></li>
-          <li><a href="#publications-hub" class="nav-link" id="nav-media-link">Media</a></li>
           <li><a href="#courses" class="nav-link">Teaching</a></li>
           <li><a href="#contact" class="nav-link">Contact</a></li>
         </ul>
@@ -1239,11 +1238,11 @@ footer {
                 <span class="stat-label">Published Books</span>
               </div>
               <div class="stat-box">
-                <span class="stat-num" id="years-count">40+</span>
+                <span class="stat-num" id="years-count">45+</span>
                 <span class="stat-label">Years of Scholarship</span>
               </div>
               <div class="stat-box">
-                <span class="stat-num" id="articles-count">80+</span>
+                <span class="stat-num" id="articles-count">125+</span>
                 <span class="stat-label">Articles & Essays</span>
               </div>
             </div>
@@ -1391,7 +1390,7 @@ footer {
         <div>
           <h4 class="footer-title">Navigation</h4>
           <ul class="footer-links">
-            <li><a href="#about">Biography</a></li>
+            <li><a href="#hero">Biography</a></li>
             <li><a href="#experience">Academic Positions</a></li>
             <li><a href="#books">Featured Books</a></li>
             <li><a href="#publications-hub" id="footer-pubs-link">Publications Hub</a></li>
@@ -1435,11 +1434,19 @@ const localCvData = {
       },
       {
         "name": "CCA Faculty Profile",
-        "url": "https://www.cca.edu/people/mitchell-schwarzer/"
+        "url": "https://portal.cca.edu/people/mschwarzer/"
       },
       {
         "name": "UC Press Author Hub",
-        "url": "https://www.ucpress.edu/author/mitchell-schwarzer"
+        "url": "https://www.ucpress.edu/books/hella-town/paper"
+      },
+      {
+        "name": "Amazon Store",
+        "url": "https://www.amazon.com/stores/Mitchell-Schwarzer/author/B001JS25B4?ref=sr_ntt_srch_lnk_3&qid=1784164464&sr=1-3&shoppingPortalEnabled=true"
+      },
+      {
+        "name": "LinkedIn Profile",
+        "url": "https://www.linkedin.com/in/mitchell-schwarzer-42b83019/"
       }
     ]
   },
@@ -4002,7 +4009,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const container = document.getElementById("hero-profiles-container");
     if (!container || !links) return;
     container.innerHTML = links.map(link => {
-      const targetUrl = `static/mock_viewer.html?title=${encodeURIComponent(link.name)}&source=Mitchell%20Schwarzer%20Profile%20Resources&year=2026&type=External%20Profile&url=${encodeURIComponent(link.url)}`;
+      const targetUrl = link.name === "Wikipedia Biography" ? link.url : `static/mock_viewer.html?title=${encodeURIComponent(link.name)}&source=Mitchell%20Schwarzer%20Profile%20Resources&year=2026&type=External%20Profile&url=${encodeURIComponent(link.url)}`;
       return `
         <a href="${targetUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="font-size: 0.85rem; padding: 0.5rem 1rem; display: inline-flex; align-items: center; gap: 0.5rem; border: 1px solid var(--border-color); background-color: var(--bg-secondary); color: var(--text-primary); border-radius: var(--border-radius-sm); font-weight: 500; transition: var(--transition);">
           ${link.name}
@@ -4231,11 +4238,6 @@ document.addEventListener("DOMContentLoaded", () => {
             <div class="item-meta" style="margin-bottom: 0.5rem;">
               <span class="item-tag">${item.type || itemType}</span>
               ${item.volume ? `<span class="item-tag" style="background-color: transparent; border: 1px solid var(--border-color);">${item.volume}</span>` : ''}
-              ${!hasUrl && (item.type === "Video" || item.type === "TV Appearance" || item.type === "Radio Interview" || item.type === "Podcast" || activeTab === "media_appearances") ? `
-                <span class="item-tag" style="background-color: transparent; border: 1px dashed var(--border-color); color: var(--text-tertiary); font-size: 0.72rem; font-style: italic; font-weight: 500;">
-                  Broadcast Unavailable
-                </span>
-              ` : ''}
             </div>
             ${hasUrl ? `
               <h3 class="item-title-link">
@@ -4413,9 +4415,7 @@ document.addEventListener("DOMContentLoaded", () => {
           link.classList.remove("active");
           if (link.getAttribute("href") === `#${id}`) {
             if (id === "publications-hub") {
-              if (activeTab === "media_appearances" && link.id === "nav-media-link") {
-                link.classList.add("active");
-              } else if (activeTab !== "media_appearances" && link.id === "nav-pubs-link") {
+              if (link.id === "nav-pubs-link") {
                 link.classList.add("active");
               }
             } else {
